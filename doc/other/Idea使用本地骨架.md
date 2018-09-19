@@ -1,0 +1,2 @@
+`-DarchetypeCatalog=local `
+

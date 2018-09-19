@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <classPathEntry location="D:\developTools\mavenrepository-home\mysql\mysql-connector-java\5.1.37\mysql-connector-java-5.1.37.jar" />
+
+    <context id="mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <commentGenerator type="org.mybatis.generator.MyCommentGenerator">
+            <!-- 定义是否生成原生注释，选择false -->
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="false"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://mysql:3306/activity?useUnicode=true"
+                        userId="root"
+                        password="Zkk765696946@">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.gupao.edu" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.gupao.edu"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.gupao.edu"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table tableName="activity_record" domainObjectName="ActivityRecord" >
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="ID" sqlStatement="MySql" identity="true" />
+            <columnOverride column="ID" jdbcType="VARCHAR" />
+        </table>
+
+    </context>
+</generatorConfiguration>

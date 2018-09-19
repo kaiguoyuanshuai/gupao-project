@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.gupao.edu</groupId>
+    <artifactId>gupao-dependency</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+
+    <properties>
+        <framework.version>1.0.1-SNAPSHOT</framework.version>
+        <current.version>1.0.1-SNAPSHOT</current.version>
+        <mysql-connector.version>5.1.21</mysql-connector.version>
+        <log4j.version>1.2.16</log4j.version>
+        <mybatis-mapper.version>1.2.4</mybatis-mapper.version>
+        <mybatis-pagehelper.version>1.2.3</mybatis-pagehelper.version>
+        <spring.version>4.3.12.RELEASE</spring.version>
+        <slf4j-api.version>1.6.1</slf4j-api.version>
+        <slf4j-log4j.version>1.6.1</slf4j-log4j.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!--spring 依赖包-->
+            <!--dubbo-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>2.5.3</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>0.10</version>
+            </dependency>
+
+            <!--mybatis and mysql-->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>3.0.5</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.8</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.1.9</version>
+            </dependency>
+            <!--mybatis and mysql-->
+
+            <!-- jwt -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>0.9.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>2.10</version>
+            </dependency>
+            <!-- jwt -->
+
+            <!-- 日志 -->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j-log4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>3.1.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.7</version>
+            </dependency>
+            <!--mybatis plagin -->
+
+            <!--框架依赖 -->
+            <dependency>
+                <groupId>com.gupao.edu</groupId>
+                <artifactId>gupao-api-dependency</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gupao.edu</groupId>
+                <artifactId>gupao-service-dependency</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gupao.edu</groupId>
+                <artifactId>gupao-web-dependency</artifactId>
+                <version>${framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.gupao.edu</groupId>
+                <artifactId>service-ext-common</artifactId>
+                <version>${current.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gupao.edu</groupId>
+                <artifactId>service-exception-common</artifactId>
+                <version>${current.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gupao.edu</groupId>
+                <artifactId>gupao-kafka-consumer-dependency</artifactId>
+                <version>${current.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gupao.edu</groupId>
+                <artifactId>gupao-kafka-producer-dependency</artifactId>
+                <version>${current.version}</version>
+            </dependency>
+
+            <!-- 业务模块 -->
+            <dependency>
+                <groupId>com.gupao.edu</groupId>
+                <artifactId>user-service-api</artifactId>
+                <version>${current.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>2.1.7.RELEASE</version>
+            </dependency>
+
+
+        </dependencies>
+
+    </dependencyManagement>
+
+</project>

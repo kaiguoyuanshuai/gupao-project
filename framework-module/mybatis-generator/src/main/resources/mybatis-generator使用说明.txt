@@ -1,0 +1,12 @@
+1、修改mybatis-generator/generatorConfig.xml中的table标签
+指定对应的tableName domainObjectName
+<table tableName="bzl_project_warehouse" domainObjectName="BBBBzlProjectWarehouse" >
+
+2、执行 mybatis-generator:generate
+
+3、复制对应的内容对对应的目录中
+
+4、删除生成的文件
+
+5、不要提交这里的代码
+
