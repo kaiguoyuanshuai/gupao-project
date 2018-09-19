@@ -25,9 +25,10 @@ public class BaseResponse<T> implements Serializable {
      *
      * @return BaseResponse
      */
-    public void success() {
+    public BaseResponse success() {
         this.code = ResponseCodeEnum.SUCCESS.getCode();
         this.msg = ResponseCodeEnum.SUCCESS.getMsg();
+        return this;
     }
 
 
@@ -36,10 +37,11 @@ public class BaseResponse<T> implements Serializable {
      *
      * @param result 设置返回的对象
      */
-    public void success(T result) {
+    public BaseResponse success(T result) {
         this.code = ResponseCodeEnum.SUCCESS.getCode();
         this.msg = ResponseCodeEnum.SUCCESS.getMsg();
         this.result = result;
+        return this;
     }
 
 

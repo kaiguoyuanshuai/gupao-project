@@ -5,20 +5,5 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 
-    <bean id="containerProperties" class="org.springframework.kafka.listener.config.ContainerProperties">
-        <!--<constructor-arg>
-            <list>
-                <value>test</value>
-            </list>
-        </constructor-arg>-->
-        <constructor-arg name="topics" value="test"/>
-        <property name="messageListener" ref="activityQualificationListener"/>
-    </bean>
-
-    <bean id="messageListenerContainer" class="org.springframework.kafka.listener.KafkaMessageListenerContainer"
-          init-method="doStart">
-        <constructor-arg ref="consumerFactory"/>
-        <constructor-arg ref="containerProperties"/>
-    </bean>
 
 </beans>

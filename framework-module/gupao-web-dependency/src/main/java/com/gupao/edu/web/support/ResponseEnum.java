@@ -2,8 +2,8 @@ package com.gupao.edu.web.support;
 
 public enum ResponseEnum {
 
-    SUCCESS("0","成功"),
-    FAILED("1","系统繁忙,请稍后重试"),
+    SUCCESS("200","成功"),
+    FAILED("500","系统繁忙,请稍后重试"),
     ;
     private String code;
     private String msg;

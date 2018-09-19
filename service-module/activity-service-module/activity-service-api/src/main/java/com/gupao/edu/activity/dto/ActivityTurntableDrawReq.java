@@ -11,7 +11,21 @@ import com.gupao.edu.serviceext.common.dto.BaseRequest;
 public class ActivityTurntableDrawReq extends BaseRequest {
 
     private static final long serialVersionUID = -2656856190551500547L;
-    public String uid ;
+
+    /**
+     * 抽奖活动编号
+     */
+    public String drawCode;
+
+    public String uid;
+
+    public String getDrawCode() {
+        return drawCode;
+    }
+
+    public void setDrawCode(String drawCode) {
+        this.drawCode = drawCode;
+    }
 
     public String getUid() {
         return uid;
@@ -20,4 +34,5 @@ public class ActivityTurntableDrawReq extends BaseRequest {
     public void setUid(String uid) {
         this.uid = uid;
     }
+
 }

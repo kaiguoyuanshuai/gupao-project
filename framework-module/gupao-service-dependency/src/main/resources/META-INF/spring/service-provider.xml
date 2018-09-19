@@ -11,7 +11,7 @@
 
 	<dubbo:registry protocol="zookeeper" address="${dubbo.zk.servers}"
 					group="${dubbo.zk.group}"
-					file="${dubbo.cache.dir}/user-service.cache"/>
+					file="${dubbo.cache.dir}/service.cache"/>
 
 	<dubbo:protocol name="dubbo"
 					port="${dubbo.service.provider.port}"

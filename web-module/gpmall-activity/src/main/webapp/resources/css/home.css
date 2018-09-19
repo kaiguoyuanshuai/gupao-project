@@ -104,3 +104,18 @@ p{margin:0;padding:0;}
     left: 40px;
     top: 27px;
 }
+
+.turntable-bg .item {
+    width: 450px;
+    height: 450px;
+    position: absolute;
+    left: 40px;
+    top: 27px;
+}
+
+
+
+
+.turnplate{display:block;width:100%;position:relative; background:url(../images/activity/turntable_bg.png) no-repeat 0 0;background-size:99.7% auto;}
+.turnplate canvas.item{width:100%;}
+.turnplate img.pointer{position:absolute;left:34.6%;top:36%;width:39%;}
