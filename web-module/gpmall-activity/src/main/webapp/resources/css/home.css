@@ -73,7 +73,7 @@ p{margin:0;padding:0;}
 
 .turntable-bg {
     width: 650px;
-    height: 677px;
+    height: 700px;
     margin: 0 auto;
     position: relative;
     background: url("/resources/images/activity/turntable_bg.png") no-repeat center center;
@@ -92,8 +92,8 @@ p{margin:0;padding:0;}
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-left: -77px;
-    margin-top: -180px;
+    margin-left: -79px;
+    margin-top: -200px;
     z-index: 8;
     cursor:pointer;
 }
@@ -106,11 +106,9 @@ p{margin:0;padding:0;}
 }
 
 .turntable-bg .item {
-    width: 450px;
-    height: 450px;
     position: absolute;
-    left: 40px;
-    top: 27px;
+    left: 30px;
+    top: 30px;
 }
 
 
