@@ -53,7 +53,7 @@
             <div class="turntable-bg">
                 <!--<div class="mask"><img src="images/award_01.png"/></div>-->
                 <div class="pointer"><img src="../resources/images/activity/pointer.png" alt="pointer"/></div>
-                <div class="rotate" ><canvas class="item" id="wheelcanvas" width="450px" height="450px"></canvas></div>
+               <!-- <div class="rotate" >--><canvas class="item" id="wheelcanvas" width="570px" height="570px"></canvas><!--</div>-->
             </div>
 
             <div class="sign-3-2">
@@ -114,7 +114,7 @@
         restaraunts: [], //大转盘奖品名称
         colors: [], //大转盘奖品区块对应背景颜色
         outsideRadius: 285, //大转盘外圆的半径
-        textRadius: 255, //大转盘奖品位置距离圆心的距离
+        textRadius: 145, //大转盘奖品位置距离圆心的距离
         insideRadius: 77, //大转盘内圆的半径
         startAngle: 0, //开始角度
 
@@ -226,8 +226,8 @@
                 ctx.fillStyle = turnplate.colors[i];
                 ctx.beginPath();
                 //arc(x,y,r,起始角,结束角,绘制方向) 方法创建弧/曲线（用于创建圆或部分圆）
-                ctx.arc(211, 211, turnplate.outsideRadius, angle, angle + arc, false);
-                ctx.arc(211, 211, turnplate.insideRadius, angle + arc, angle, true);
+                ctx.arc(285, 285, turnplate.outsideRadius, angle, angle + arc, false);
+                ctx.arc(285, 285, turnplate.insideRadius, angle + arc, angle, true);
                 ctx.stroke();
                 ctx.fill();
                 //锁画布(为了保存之前的画布状态)
