@@ -10,7 +10,19 @@ public abstract class AbstractAuctionTaskProcess implements AuctionTaskProcess {
     @Override
     public Object doAuction(Object auctionContext) {
 
+        doProcess();
+
         return null;
 
     }
+
+    public abstract void doProcess();
+
+
+    /**
+     * 返回当前竞价类型
+     *
+     * @return
+     */
+    protected abstract int getAuctionType();
 }
