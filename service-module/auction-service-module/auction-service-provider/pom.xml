@@ -26,6 +26,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.gupao.edu</groupId>
+            <artifactId>gupao-kafka-consumer-dependency</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
         </dependency>
