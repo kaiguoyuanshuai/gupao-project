@@ -31,7 +31,7 @@ public class AuctionDetailServiceImpl implements AuctionDetailService {
     @Override
     public AuctionDetailResponse saveAuctionDetail(AuctionDetailRequest auctionDetailRequest) {
         AuctionDetailResponse auctionDetailResponse = new AuctionDetailResponse();
-        if (checkAucationDetailParam(auctionDetailRequest)) {
+        if (!checkAucationDetailParam(auctionDetailRequest)) {
             auctionDetailResponse.fail("10004", "参数校验失败");
             return auctionDetailResponse;
         }
@@ -72,35 +72,31 @@ public class AuctionDetailServiceImpl implements AuctionDetailService {
         }
 
         //检查开始时间
-        if (auctionDetailRequest.getAuctionStartTime() != null) {
+        if (auctionDetailRequest.getAuctionStartTime() == null) {
             LOGGER.error("竞购开始时间不能为空");
             return false;
         }
         //检查结束时间
-        if (auctionDetailRequest.getAuctionDendLime() != null) {
+        if (auctionDetailRequest.getAuctionDendLime() == null) {
             LOGGER.error("竞购开始时间不能为空");
             return false;
         }
 
         //检查最低成交价格不能为空
-        if (auctionDetailRequest.getAuctionProductMinimumPrice() != null) {
+        if (auctionDetailRequest.getAuctionProductMinimumPrice() == null) {
             LOGGER.error("最低成交价格不能为空");
             return false;
         }
 
-        //检查最低成交价格不能为空
-        if (auctionDetailRequest.getAuctionProductMinimumPrice() != null) {
-            LOGGER.error("最低成交价格不能为空");
+        if (StringUtils.isEmpty(auctionDetailRequest.getAuctionPerPrice()) && !StringUtils.isNumeric(auctionDetailRequest.getAuctionPerPrice())) {
+            LOGGER.error("加价幅度不能为空或者必须为数值");
             return false;
         }
 
-        if (StringUtils.isEmpty(auctionDetailRequest.getAuctionPerPrice()) && StringUtils.isNumeric(auctionDetailRequest.getAuctionPerPrice())) {
-            LOGGER.error("加价幅度不能为空");
-            return false;
-        }
-
-        if (StringUtils.equals(auctionDetailRequest.getAuctionMode(), AuctionModelEnum.AUCTION_PRICE_MODEL.getLabel()) && StringUtils.isNumeric(auctionDetailRequest.getAuctionFinalPrice().toString())) {
-            LOGGER.error("时间模式下,预设的最终价格不能为空");
+        if (StringUtils.equals(auctionDetailRequest.getAuctionMode(), AuctionModelEnum.AUCTION_PRICE_MODEL.getLabel())
+                && !(auctionDetailRequest.getAuctionFinalPrice() != null
+                && StringUtils.isNumeric(auctionDetailRequest.getAuctionFinalPrice().toString()))) {
+            LOGGER.error("时间模式下,预设的最终价格不能为空或者必须为数值");
             return false;
         }
 

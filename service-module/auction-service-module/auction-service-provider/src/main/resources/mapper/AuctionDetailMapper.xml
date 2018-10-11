@@ -18,11 +18,7 @@
     delete from auction_detail
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.gupao.edu.auction.dal.entity.AuctionDetail">
-
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
+  <insert id="insert" parameterType="com.gupao.edu.auction.dal.entity.AuctionDetail" useGeneratedKeys="true" keyProperty="id">
     insert into auction_detail (id,product_id, auction_mode, auction_start_time,
       auction_dend_lime, auction_product_minimum_price,
       auction_per_price, auction_final_price, auction_actual_price,
