@@ -1,6 +1,8 @@
 package com.gupao.edu.auction.controller;
 
 import com.gupao.edu.auction.constants.AuctionMessageTopicConstants;
+import com.gupao.edu.auction.dto.AuctionDetailRequest;
+import com.gupao.edu.auction.service.AuctionDetailService;
 import com.gupao.edu.web.controller.BaseController;
 import com.gupao.edu.web.support.ResponseData;
 import org.slf4j.Logger;
@@ -24,12 +26,23 @@ public class AuctionController extends BaseController {
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
+    @Autowired
+    private AuctionDetailService auctionDetailService;
 
     @RequestMapping("doAuction")
     public ResponseData doAuction() {
 
         LOGGER.info("发起一个竞购的消息内容");
         kafkaTemplate.send(AuctionMessageTopicConstants.AUCTION_WORK_MESSAGE, new Object());
+
+        return ResponseData.SUCCESS();
+    }
+
+
+    @RequestMapping("createAuction")
+    public ResponseData createAuction(AuctionDetailRequest auctionDetailRequest) {
+
+        auctionDetailService.saveAuctionDetail(auctionDetailRequest);
 
         return ResponseData.SUCCESS();
     }

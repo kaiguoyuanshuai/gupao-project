@@ -41,11 +41,18 @@
         </dependency>
 
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gupao.edu</groupId>
+            <artifactId>mock-test</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
 </project>

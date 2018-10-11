@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gupao.edu.AuctionDetailMapper">
-  <resultMap id="BaseResultMap" type="com.gupao.edu.AuctionDetail">
+<mapper namespace="com.gupao.edu.auction.dal.persistence.AuctionDetailMapper">
+  <resultMap id="BaseResultMap" type="com.gupao.edu.auction.dal.entity.AuctionDetail">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="product_id" jdbcType="INTEGER" property="productId" />
     <result column="auction_mode" jdbcType="VARCHAR" property="auctionMode" />
@@ -18,21 +18,21 @@
     delete from auction_detail
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.gupao.edu.AuctionDetail">
+  <insert id="insert" parameterType="com.gupao.edu.auction.dal.entity.AuctionDetail">
 
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into auction_detail (product_id, auction_mode, auction_start_time, 
-      auction_dend_lime, auction_product_minimum_price, 
-      auction_per_price, auction_final_price, auction_actual_price, 
+    insert into auction_detail (id,product_id, auction_mode, auction_start_time,
+      auction_dend_lime, auction_product_minimum_price,
+      auction_per_price, auction_final_price, auction_actual_price,
       auction_status)
-    values (#{productId,jdbcType=INTEGER}, #{auctionMode,jdbcType=VARCHAR}, #{auctionStartTime,jdbcType=TIMESTAMP}, 
-      #{auctionDendLime,jdbcType=TIMESTAMP}, #{auctionProductMinimumPrice,jdbcType=DECIMAL}, 
-      #{auctionPerPrice,jdbcType=VARCHAR}, #{auctionFinalPrice,jdbcType=DECIMAL}, #{auctionActualPrice,jdbcType=DECIMAL}, 
+    values (#{id,jdbcType=INTEGER},#{productId,jdbcType=INTEGER}, #{auctionMode,jdbcType=VARCHAR}, #{auctionStartTime,jdbcType=TIMESTAMP},
+      #{auctionDendLime,jdbcType=TIMESTAMP}, #{auctionProductMinimumPrice,jdbcType=DECIMAL},
+      #{auctionPerPrice,jdbcType=VARCHAR}, #{auctionFinalPrice,jdbcType=DECIMAL}, #{auctionActualPrice,jdbcType=DECIMAL},
       #{auctionStatus,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.gupao.edu.AuctionDetail">
+  <update id="updateByPrimaryKey" parameterType="com.gupao.edu.auction.dal.entity.AuctionDetail">
 
     update auction_detail
     set product_id = #{productId,jdbcType=INTEGER},
