@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	    http://www.springframework.org/schema/tx
+	    http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.3.xsd
+	   http://www.springframework.org/schema/aop
+	   http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:advice id="transactionTxAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="remove*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" no-rollback-for="java.lang.RuntimeException" />
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" no-rollback-for="java.lang.RuntimeException" />
+			<tx:method name="add*" propagation="REQUIRED" read-only="false"	rollback-for="java.lang.RuntimeException" />
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.RuntimeException" />
+			<tx:method name="save*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.RuntimeException" />
+			<tx:method name="update*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="publish*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+
+			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="list*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="query*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="page*" propagation="SUPPORTS" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+	<aop:config>
+		<aop:pointcut id="pc" expression="execution(public * com.gupao.edu.*.service.*.*(..))" />
+		<aop:advisor pointcut-ref="pc" advice-ref="transactionTxAdvice" />
+	</aop:config>
+
+</beans>
