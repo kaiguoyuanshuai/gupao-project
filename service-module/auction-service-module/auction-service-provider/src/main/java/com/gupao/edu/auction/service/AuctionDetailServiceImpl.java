@@ -43,7 +43,10 @@ public class AuctionDetailServiceImpl implements AuctionDetailService {
             LOGGER.debug("执行存储竞购细节的参数为：", auctionDetail.toString());
         }
 
+        //TODO 检查产品信息存不存在
+
         auctionDetailMapper.insert(auctionDetail);
+
         //创建活动细节内容
 
         //存储到redis 中
@@ -78,7 +81,13 @@ public class AuctionDetailServiceImpl implements AuctionDetailService {
         }
         //检查结束时间
         if (auctionDetailRequest.getAuctionDendLime() == null) {
-            LOGGER.error("竞购开始时间不能为空");
+            LOGGER.error("竞购结束时间不能为空");
+            return false;
+        }
+
+        //检查结束时间不能比开始时间早
+        if (auctionDetailRequest.getAuctionDendLime().compareTo(auctionDetailRequest.getAuctionStartTime()) <= 0) {
+            LOGGER.error("竞购结束时间不能比竞购开始时间早");
             return false;
         }
 
