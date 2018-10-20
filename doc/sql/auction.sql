@@ -4,7 +4,7 @@ Navicat MySQL Data Transfer
 Target Server Type    : MYSQL
 Target Server Version : 50616
 File Encoding         : 65001
-
+竞购系统数据库设计
 Date: 2018-09-06 18:19:16
 */
 
