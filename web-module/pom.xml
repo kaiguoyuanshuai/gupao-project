@@ -16,6 +16,8 @@
         <module>gpmall-activity</module>
         <module>gpmall-cashier</module>
         <module>gpmall-auction</module>
+        <module>gpmall-admin</module>
+        <module>gpmall-portal</module>
     </modules>
 
 </project>
