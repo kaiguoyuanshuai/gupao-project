@@ -2,11 +2,11 @@
     
 # 使用技术
 - dubbo
-- kafka 
+- kafka
 - redis
-- Spring 
+- Spring
 - Mybatis
-- SpringMvc
+- SpringMVC
 - docker
 - jenkins
 - sso
