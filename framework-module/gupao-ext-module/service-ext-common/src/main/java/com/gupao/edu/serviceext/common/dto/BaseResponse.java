@@ -50,9 +50,10 @@ public class BaseResponse<T> implements Serializable {
      *
      * @return
      */
-    public void fail() {
+    public BaseResponse fail() {
         this.code = ResponseCodeEnum.FAIL.getCode();
         this.msg = ResponseCodeEnum.FAIL.getMsg();
+        return this;
     }
 
 
@@ -62,10 +63,11 @@ public class BaseResponse<T> implements Serializable {
      * @param result 设置返回的对象
      * @return
      */
-    public void fail(T result) {
+    public BaseResponse fail(T result) {
         this.code = ResponseCodeEnum.FAIL.getCode();
         this.msg = ResponseCodeEnum.FAIL.getMsg();
         this.result = result;
+        return this;
     }
 
     /**

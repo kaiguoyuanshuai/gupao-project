@@ -37,6 +37,12 @@
             <artifactId>gupao-kafka-producer-dependency</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.gupao.edu</groupId>
+            <artifactId>delay-task-component</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
     <build>
