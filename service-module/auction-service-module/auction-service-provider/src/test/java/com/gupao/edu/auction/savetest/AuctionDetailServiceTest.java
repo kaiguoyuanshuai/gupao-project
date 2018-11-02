@@ -1,6 +1,6 @@
 package com.gupao.edu.auction.savetest;
 
-import com.gupao.edu.auction.AuctionModelEnum;
+import com.gupao.edu.auction.enums.AuctionModelEnum;
 import com.gupao.edu.auction.dto.AuctionDetailRequest;
 import com.gupao.edu.auction.dto.AuctionDetailResponse;
 import com.gupao.edu.auction.service.AuctionDetailService;

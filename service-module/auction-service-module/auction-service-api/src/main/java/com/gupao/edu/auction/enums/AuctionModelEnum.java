@@ -1,4 +1,4 @@
-package com.gupao.edu.auction;
+package com.gupao.edu.auction.enums;
 
 /*
  * 描述:

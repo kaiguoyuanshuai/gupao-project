@@ -3,6 +3,7 @@ package com.gupao.edu.serviceext.common.dto;
 import com.gupao.edu.exceptions.ServiceException;
 import com.gupao.edu.exceptions.enums.BaseEnum;
 import com.gupao.edu.exceptions.enums.ResponseCodeEnum;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 
@@ -149,6 +150,18 @@ public class BaseResponse<T> implements Serializable {
         this.code = serviceException.getErrorCode();
         this.msg = serviceException.getErrorMessage();
         this.result = result;
+    }
+
+
+    /**
+     * 判断是否返回成功
+     * @return
+     */
+    public boolean isSuccess() {
+        if (StringUtils.equals(this.code, SUCCESS)) {
+            return true;
+        }
+        return false;
     }
 
     public String getCode() {

@@ -1,15 +1,19 @@
 package com.gupao.edu.auction.service;
 
-import com.gupao.edu.auction.AuctionModelEnum;
+import com.gupao.edu.auction.constants.AuctionMQConstants;
 import com.gupao.edu.auction.dal.entity.AuctionDetail;
 import com.gupao.edu.auction.dal.persistence.AuctionDetailMapper;
 import com.gupao.edu.auction.dto.AuctionDetailRequest;
 import com.gupao.edu.auction.dto.AuctionDetailResponse;
+import com.gupao.edu.auction.enums.AuctionErrorEnum;
+import com.gupao.edu.auction.enums.AuctionModelEnum;
+import com.gupao.edu.delay.task.DelayTaskProcess;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 /*
@@ -28,6 +32,13 @@ public class AuctionDetailServiceImpl implements AuctionDetailService {
     @Autowired
     private AuctionDetailMapper auctionDetailMapper;
 
+    @Autowired
+    private DelayTaskProcess delayTaskProcess;
+
+    @Autowired
+    private KafkaTemplate kafkaTemplate;
+
+
     @Override
     public AuctionDetailResponse saveAuctionDetail(AuctionDetailRequest auctionDetailRequest) {
         AuctionDetailResponse auctionDetailResponse = new AuctionDetailResponse();
@@ -44,12 +55,14 @@ public class AuctionDetailServiceImpl implements AuctionDetailService {
         }
 
         //TODO 检查产品信息存不存在
+        int insertResult = auctionDetailMapper.insert(auctionDetail);
 
-        auctionDetailMapper.insert(auctionDetail);
-
-        //创建活动细节内容
-
-        //存储到redis 中
+        if (insertResult <= 0) {
+            auctionDetailResponse.fail(AuctionErrorEnum.SAVE_NOT_SUCCESS);
+            return auctionDetailResponse;
+        }
+        //发送创建活动信息的MQ消息
+        kafkaTemplate.send(AuctionMQConstants.AUCTION_GENERATE_MQ_TOPIC, auctionDetail);
         auctionDetailResponse.success();
         return auctionDetailResponse;
     }

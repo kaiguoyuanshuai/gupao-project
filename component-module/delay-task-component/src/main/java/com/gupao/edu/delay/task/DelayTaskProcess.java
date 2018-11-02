@@ -30,18 +30,15 @@ public class DelayTaskProcess {
     public BaseResponse put(JobDetail jobDetail) {
 
         if (jobDetail == null) {
-            //TODO 加上返回错误枚举
-            return new BaseResponse().fail();
+            return new BaseResponse().fail(DelayTaskErrorCodeEnum.PPARAM_ILLEGAL);
         }
 
         Boolean result = redisTemplate.opsForZSet().add(DELAY_TASK_PREFIX, JsonUtils.toJson(jobDetail), jobDetail.getTime());
         if (result) {
             return new BaseResponse().success();
         }
-        return new BaseResponse().fail();
+        return new BaseResponse().fail(DelayTaskErrorCodeEnum.FAIL);
     }
-
-    //TODO 删除任务
 
     /**
      * 删除延迟任务
@@ -52,7 +49,7 @@ public class DelayTaskProcess {
     public BaseResponse delete(JobDetail jobDetail) {
         if (jobDetail == null) {
             //TODO 加上返回错误枚举
-            return new BaseResponse().fail(DelayTaskErrorCodeEnum.PPARAM_ILLEGAL_);
+            return new BaseResponse().fail(DelayTaskErrorCodeEnum.PPARAM_ILLEGAL);
         }
 
 

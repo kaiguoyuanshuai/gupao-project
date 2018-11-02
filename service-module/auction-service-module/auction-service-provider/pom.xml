@@ -31,6 +31,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.gupao.edu</groupId>
+            <artifactId>delay-task-component</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
         </dependency>

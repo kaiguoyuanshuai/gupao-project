@@ -6,15 +6,15 @@ import org.springframework.kafka.listener.MessageListener;
 import org.springframework.stereotype.Service;
 
 /**
- * 腾讯课堂搜索 咕泡学院
- * 加群获取视频：608583947
- * 风骚的Michael 老师
+ * 处理 AUCTION_GENERATE_MQ_TOPIC 发送出来的消息内容
  */
 @Service
-public class AuctionWorkMessageListener implements MessageListener<Integer,String> {
+public class AuctionWorkMessageListener implements MessageListener<Integer, String> {
 
     @Override
     public void onMessage(ConsumerRecord<Integer, String> integerStringConsumerRecord) {
-
+        //
     }
+
+
 }

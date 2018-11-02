@@ -1,7 +1,6 @@
 package com.gupao.edu.auction.controller;
 
 import com.gupao.edu.auction.constants.AuctionMessageTopicConstants;
-import com.gupao.edu.auction.dto.AuctionDetailRequest;
 import com.gupao.edu.auction.service.AuctionDetailService;
 import com.gupao.edu.web.controller.BaseController;
 import com.gupao.edu.web.support.ResponseData;
@@ -26,8 +25,6 @@ public class AuctionController extends BaseController {
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
-    @Autowired
-    private AuctionDetailService auctionDetailService;
 
     @RequestMapping("doAuction")
     public ResponseData doAuction() {
@@ -39,11 +36,5 @@ public class AuctionController extends BaseController {
     }
 
 
-    @RequestMapping("createAuction")
-    public ResponseData createAuction(AuctionDetailRequest auctionDetailRequest) {
 
-        auctionDetailService.saveAuctionDetail(auctionDetailRequest);
-
-        return ResponseData.SUCCESS();
-    }
 }
