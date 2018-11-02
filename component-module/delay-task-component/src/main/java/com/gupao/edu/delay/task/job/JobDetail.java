@@ -38,8 +38,10 @@ public class JobDetail<T> implements Serializable {
      */
     private long time;
 
+    public JobDetail() {
+    }
 
-    public JobDetail(String jobSeId ,String jobName, String jobTopic, long time, T jobDetail) {
+    public JobDetail(String jobSeId , String jobName, String jobTopic, long time, T jobDetail) {
         this.jobSeId = jobSeId;
         this.jobName = jobName;
         this.jobTopic = jobTopic;
