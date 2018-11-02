@@ -13,10 +13,7 @@
 
 
     <dependencies>
-        <dependency>
-            <groupId>com.gupao.edu</groupId>
-            <artifactId>gupao-redis-dependency</artifactId>
-        </dependency>
+
 
         <dependency>
             <groupId>com.gupao.edu</groupId>
@@ -31,6 +28,17 @@
             <groupId>com.gupao.edu</groupId>
             <artifactId>gupao-kafka-producer-dependency</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.gupao.edu</groupId>
+            <artifactId>gupao-redis-dependency</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

@@ -2,6 +2,9 @@ package com.gupao.edu.delay.task;
 
 import com.gupao.edu.delay.task.constants.DelayTaskConstants;
 import com.gupao.edu.delay.task.job.JobDetail;
+import com.gupao.edu.serviceext.common.utils.JsonUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
@@ -14,18 +17,17 @@ import java.util.Set;
 
 /*
  * 描述:
+ *  从redis 中获取当前时间的允许执行的任务，并且发送一条 jobTopic 的消息内容
  * @auth zhengkk19738
  * @time 2018/11/1
  */
 @Service
-public class AbstarctTaskHandler<T> implements Runnable {
+public class BootStrapTaskHandler implements Runnable {
 
-    //  private static Log logger = LogFactory.getLog(AbstarctTaskHandler.class);
-
+    private static Logger logger = LoggerFactory.getLogger(BootStrapTaskHandler.class);
 
     @Autowired
     RedisTemplate redisTemplate;
-
 
     @Autowired
     KafkaTemplate kafkaTemplate;
@@ -46,30 +48,6 @@ public class AbstarctTaskHandler<T> implements Runnable {
      */
     private String messageType;
 
-    /**
-     * 消息的class对象l
-     */
-    private Class<T> clazz;
-
-    private boolean monitor;
-
-    // 默认为3
-    private int retryTimes = 3;
-
-    public AbstarctTaskHandler() {
-    }
-
-    public AbstarctTaskHandler(String messageType, Class<T> clazz, int retryTimes) {
-        this.messageType = messageType;
-        this.clazz = clazz;
-        this.retryTimes = 3;
-    }
-
-    public AbstarctTaskHandler(String messageType, Class<T> clazz) {
-        this.messageType = messageType;
-        this.clazz = clazz;
-    }
-
     public void run() {
         while (true) {
             System.out.println("延时任务消息...");
@@ -88,8 +66,12 @@ public class AbstarctTaskHandler<T> implements Runnable {
                 JobDetail jobDetail = (JobDetail) typedTuple.getValue();
                 //防止部署多套程序的时候出现并发问题
                 if (redisTemplate.opsForZSet().remove(DelayTaskConstants.DELAY_TASK_PREFIX, jobDetail) > 0) {
-                    System.out.println("处理一条延时任务消息");
-                    kafkaTemplate.send(jobDetail.getJobTopic(), jobDetail.getJobDetail());
+                    logger.info("处理一条延时任务消息:ID:{}", jobDetail.getJobSeId());
+                    try {
+                        kafkaTemplate.send(jobDetail.getJobTopic(), JsonUtils.toJson(jobDetail.getJobDetail()));
+                    }catch (Exception ex){
+                        logger.error("执行发送定时任务消息队列的时候出现异常!");
+                    }
                 }
             }
         } else {

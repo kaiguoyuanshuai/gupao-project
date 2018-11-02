@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 @RestController
@@ -52,9 +55,18 @@ public class UserController extends BaseController {
 
     @RequestMapping("/test")
     @Anoymous
-    public ResponseData test() {
+    public ResponseData test(String time) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try { //"2018-11-1 17:10:27"
+            Date parse = simpleDateFormat.parse(time);
+
+            for (int i = 0; i <100 ; i++) {
+                delayTaskProcess.put(new JobDetail("test", "wobushiceshi", parse.getTime(), parse));
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         // kafkaTemplate.send("test", "valuesss");
-        delayTaskProcess.put(new JobDetail("test", "test", System.currentTimeMillis(), null));
 
         return null;
     }
