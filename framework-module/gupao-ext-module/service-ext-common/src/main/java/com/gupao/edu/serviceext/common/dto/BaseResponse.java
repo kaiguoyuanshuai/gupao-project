@@ -77,9 +77,10 @@ public class BaseResponse<T> implements Serializable {
      * @param message
      * @return
      */
-    public void fail(String code, String message) {
+    public BaseResponse fail(String code, String message) {
         this.code = code;
         this.msg = message;
+        return this;
     }
 
 
@@ -91,10 +92,11 @@ public class BaseResponse<T> implements Serializable {
      * @param t
      * @return
      */
-    public void fail(String code, String message, T t) {
+    public BaseResponse fail(String code, String message, T t) {
         this.code = code;
         this.msg = message;
         this.result = t;
+        return this;
     }
 
 
@@ -104,9 +106,10 @@ public class BaseResponse<T> implements Serializable {
      * @param messageEnums
      * @return
      */
-    public void fail(BaseEnum messageEnums) {
+    public BaseResponse fail(BaseEnum messageEnums) {
         this.code = messageEnums.getCode();
         this.msg = messageEnums.getMsg();
+        return this;
     }
 
 

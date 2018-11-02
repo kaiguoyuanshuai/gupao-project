@@ -59,10 +59,13 @@ public class UserController extends BaseController {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try { //"2018-11-1 17:10:27"
             Date parse = simpleDateFormat.parse(time);
-
-            for (int i = 0; i <100 ; i++) {
-                delayTaskProcess.put(new JobDetail("test", "wobushiceshi", parse.getTime(), parse));
+            for (int i = 0; i <10 ; i++) {
+                JobDetail JobDetail = new JobDetail(i+"task","test", "wobushiceshi", parse.getTime(), parse) ;
+                delayTaskProcess.put(JobDetail);
             }
+            JobDetail deletedJobDetail = new JobDetail(1+"task","test", "wobushiceshi", parse.getTime(), parse) ;
+            delayTaskProcess.delete(deletedJobDetail) ;
+
         } catch (ParseException e) {
             e.printStackTrace();
         }

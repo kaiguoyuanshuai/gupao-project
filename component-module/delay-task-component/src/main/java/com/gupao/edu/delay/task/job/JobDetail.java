@@ -1,7 +1,6 @@
 package com.gupao.edu.delay.task.job;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 /*
  * 描述:
@@ -40,8 +39,8 @@ public class JobDetail<T> implements Serializable {
     private long time;
 
 
-    public JobDetail(String jobName, String jobTopic, long time, T jobDetail) {
-        this.jobSeId = UUID.randomUUID().toString();
+    public JobDetail(String jobSeId ,String jobName, String jobTopic, long time, T jobDetail) {
+        this.jobSeId = jobSeId;
         this.jobName = jobName;
         this.jobTopic = jobTopic;
         this.jobDetail = jobDetail;
@@ -90,5 +89,9 @@ public class JobDetail<T> implements Serializable {
 
     public String getJobSeId() {
         return jobSeId;
+    }
+
+    public void setJobSeId(String jobSeId) {
+        this.jobSeId = jobSeId;
     }
 }

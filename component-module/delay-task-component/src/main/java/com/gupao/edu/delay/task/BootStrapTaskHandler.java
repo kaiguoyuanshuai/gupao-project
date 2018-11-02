@@ -50,7 +50,7 @@ public class BootStrapTaskHandler implements Runnable {
 
     public void run() {
         while (true) {
-            System.out.println("延时任务消息...");
+            logger.debug("延时任务监控正在扫描中.....");
             listen();
         }
     }
@@ -63,13 +63,13 @@ public class BootStrapTaskHandler implements Runnable {
         Set<ZSetOperations.TypedTuple> set = redisTemplate.opsForZSet().rangeByScoreWithScores(DelayTaskConstants.DELAY_TASK_PREFIX, 0, System.currentTimeMillis());
         if (!CollectionUtils.isEmpty(set)) {
             for (ZSetOperations.TypedTuple typedTuple : set) {
-                JobDetail jobDetail = (JobDetail) typedTuple.getValue();
+                JobDetail jobDetail = (JobDetail) JsonUtils.json2Object((String) typedTuple.getValue(), JobDetail.class);
                 //防止部署多套程序的时候出现并发问题
-                if (redisTemplate.opsForZSet().remove(DelayTaskConstants.DELAY_TASK_PREFIX, jobDetail) > 0) {
+                if (redisTemplate.opsForZSet().remove(DelayTaskConstants.DELAY_TASK_PREFIX, typedTuple.getValue()) > 0) {
                     logger.info("处理一条延时任务消息:ID:{}", jobDetail.getJobSeId());
                     try {
                         kafkaTemplate.send(jobDetail.getJobTopic(), JsonUtils.toJson(jobDetail.getJobDetail()));
-                    }catch (Exception ex){
+                    } catch (Exception ex) {
                         logger.error("执行发送定时任务消息队列的时候出现异常!");
                     }
                 }
