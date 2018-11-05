@@ -13,7 +13,9 @@ public class AuctionWorkMessageListener implements MessageListener<Integer, Stri
 
     @Override
     public void onMessage(ConsumerRecord<Integer, String> integerStringConsumerRecord) {
-        //
+        //创建活动的缓存信息，并且设置过期时间为活动开始后的1周之后
+
+
     }
 
 
