@@ -15,4 +15,5 @@ public interface AuctionTaskProcess<T> {
     T doAuction(T auctionContext);
 
 
+    
 }

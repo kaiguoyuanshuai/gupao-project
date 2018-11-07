@@ -12,12 +12,13 @@ public class AuctionWorkRequest extends BaseRequest {
     /**
      * 竞购活动ID
      */
-    public String auctionActivityId;
+    private String auctionActivityId;
 
     /**
      * 竞购活动获取的秘钥信息
      */
     private String auctionKey;
+
 
     public String getAuctionActivityId() {
         return auctionActivityId;

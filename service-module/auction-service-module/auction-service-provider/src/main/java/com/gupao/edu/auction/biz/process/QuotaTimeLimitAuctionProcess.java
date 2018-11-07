@@ -12,8 +12,9 @@ import org.springframework.stereotype.Service;
 @Service("quotaTimeLimitAuctionProcess")
 public class QuotaTimeLimitAuctionProcess extends AbstractAuctionTaskProcess {
 
+
     @Override
-    public void doProcess() {
+    public void doProcess(Object o) {
 
     }
 

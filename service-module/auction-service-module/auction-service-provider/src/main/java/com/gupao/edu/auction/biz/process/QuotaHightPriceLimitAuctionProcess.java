@@ -11,8 +11,17 @@ import org.springframework.stereotype.Service;
 @Service("quotaHightPriceLimitAuctionProcess")
 public class QuotaHightPriceLimitAuctionProcess extends AbstractAuctionTaskProcess {
 
+
     @Override
-    public void doProcess() {
+    public void doProcess(Object o) {
+
+        //判断key是否存在
+
+        //对比获取到的key是否一致
+
+        //移除key是否大于1
+
+        //如果大于1表示成功
 
     }
 

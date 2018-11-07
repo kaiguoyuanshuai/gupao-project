@@ -5,18 +5,20 @@ package com.gupao.edu.auction.biz;
  * @auth zhengkk19738
  * @time 2018/9/7
  */
-public abstract class AbstractAuctionTaskProcess implements AuctionTaskProcess {
+public abstract class AbstractAuctionTaskProcess<AuctionContext> implements AuctionTaskProcess {
 
     @Override
     public Object doAuction(Object auctionContext) {
 
-        doProcess();
+        //减库存
+
+        doProcess((AuctionContext) auctionContext);
 
         return null;
 
     }
 
-    public abstract void doProcess();
+    public abstract void doProcess(AuctionContext auctionContext);
 
 
     /**

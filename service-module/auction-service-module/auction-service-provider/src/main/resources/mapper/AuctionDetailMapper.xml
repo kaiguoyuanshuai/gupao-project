@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gupao.edu.auction.dal.persistence.AuctionDetailMapper">
-  <resultMap id="BaseResultMap" type="com.gupao.edu.auction.dal.entity.AuctionDetail">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="product_id" jdbcType="INTEGER" property="productId" />
-    <result column="auction_mode" jdbcType="VARCHAR" property="auctionMode" />
-    <result column="auction_start_time" jdbcType="TIMESTAMP" property="auctionStartTime" />
-    <result column="auction_dend_lime" jdbcType="TIMESTAMP" property="auctionDendLime" />
-    <result column="auction_product_minimum_price" jdbcType="DECIMAL" property="auctionProductMinimumPrice" />
-    <result column="auction_per_price" jdbcType="VARCHAR" property="auctionPerPrice" />
-    <result column="auction_final_price" jdbcType="DECIMAL" property="auctionFinalPrice" />
-    <result column="auction_actual_price" jdbcType="DECIMAL" property="auctionActualPrice" />
-    <result column="auction_status" jdbcType="VARCHAR" property="auctionStatus" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <resultMap id="BaseResultMap" type="com.gupao.edu.auction.dal.entity.AuctionDetail">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="product_id" jdbcType="VARCHAR" property="productId"/>
+        <result column="auction_mode" jdbcType="VARCHAR" property="auctionMode"/>
+        <result column="auction_start_time" jdbcType="TIMESTAMP" property="auctionStartTime"/>
+        <result column="auction_dend_lime" jdbcType="TIMESTAMP" property="auctionDendLime"/>
+        <result column="auction_product_minimum_price" jdbcType="DECIMAL" property="auctionProductMinimumPrice"/>
+        <result column="auction_per_price" jdbcType="VARCHAR" property="auctionPerPrice"/>
+        <result column="auction_final_price" jdbcType="DECIMAL" property="auctionFinalPrice"/>
+        <result column="auction_actual_price" jdbcType="DECIMAL" property="auctionActualPrice"/>
+        <result column="auction_status" jdbcType="VARCHAR" property="auctionStatus"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 
     delete from auction_detail
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.gupao.edu.auction.dal.entity.AuctionDetail" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.gupao.edu.auction.dal.entity.AuctionDetail" useGeneratedKeys="true"
+            keyProperty="id">
     insert into auction_detail (id,product_id, auction_mode, auction_start_time,
       auction_dend_lime, auction_product_minimum_price,
       auction_per_price, auction_final_price, auction_actual_price,
       auction_status)
-    values (#{id,jdbcType=INTEGER},#{productId,jdbcType=INTEGER}, #{auctionMode,jdbcType=VARCHAR}, #{auctionStartTime,jdbcType=TIMESTAMP},
+    values (#{id,jdbcType=VARCHAR},#{productId,jdbcType=INTEGER}, #{auctionMode,jdbcType=VARCHAR}, #{auctionStartTime,jdbcType=TIMESTAMP},
       #{auctionDendLime,jdbcType=TIMESTAMP}, #{auctionProductMinimumPrice,jdbcType=DECIMAL},
       #{auctionPerPrice,jdbcType=VARCHAR}, #{auctionFinalPrice,jdbcType=DECIMAL}, #{auctionActualPrice,jdbcType=DECIMAL},
       #{auctionStatus,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.gupao.edu.auction.dal.entity.AuctionDetail">
+    <update id="updateByPrimaryKey" parameterType="com.gupao.edu.auction.dal.entity.AuctionDetail">
 
     update auction_detail
-    set product_id = #{productId,jdbcType=INTEGER},
+    set product_id = #{productId,jdbcType=VARCHAR},
       auction_mode = #{auctionMode,jdbcType=VARCHAR},
       auction_start_time = #{auctionStartTime,jdbcType=TIMESTAMP},
       auction_dend_lime = #{auctionDendLime,jdbcType=TIMESTAMP},
@@ -42,14 +43,14 @@
       auction_status = #{auctionStatus,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 
     select id, product_id, auction_mode, auction_start_time, auction_dend_lime, auction_product_minimum_price, 
     auction_per_price, auction_final_price, auction_actual_price, auction_status
     from auction_detail
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
+    <select id="selectAll" resultMap="BaseResultMap">
 
     select id, product_id, auction_mode, auction_start_time, auction_dend_lime, auction_product_minimum_price, 
     auction_per_price, auction_final_price, auction_actual_price, auction_status
