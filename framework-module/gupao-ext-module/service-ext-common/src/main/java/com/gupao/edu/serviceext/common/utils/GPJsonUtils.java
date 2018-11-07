@@ -13,9 +13,9 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
-public class JsonUtils {
+public class GPJsonUtils {
 
-	private static final Logger log = LoggerFactory.getLogger(JsonUtils.class);
+	private static final Logger log = LoggerFactory.getLogger(GPJsonUtils.class);
 	private final static ObjectMapper objectMapper;
 
 
@@ -107,7 +107,7 @@ public class JsonUtils {
 	public static JsonNode getNode(String json, String nodeName) {
 		JsonNode node = null;
 		try {
-			node = JsonUtils.getObjectMapper().readTree(json);
+			node = GPJsonUtils.getObjectMapper().readTree(json);
 			return node.get(nodeName);
 		} catch (JsonProcessingException e) {
 			log.warn("json error:" + e.getMessage());

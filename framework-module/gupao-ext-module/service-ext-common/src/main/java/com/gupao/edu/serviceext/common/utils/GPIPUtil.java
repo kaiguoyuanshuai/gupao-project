@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  * @category @author xiangyong.ding@weimob.com
  * @since 2017年3月23日 下午10:53:36
  */
-public class IPUtil
+public class GPIPUtil
 {
 	public static String getIp(HttpServletRequest request)
 	{

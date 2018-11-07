@@ -7,13 +7,29 @@
 
     <bean id="generateAuctionContainerProperties" class="org.springframework.kafka.listener.config.ContainerProperties">
         <constructor-arg name="topics" value="AUCTION_GENERATE_MQ_TOPIC"/>
-        <property name="messageListener" ref="generateAuctionMessageListenerContainer"/>
+        <property name="messageListener" ref="auctionGenerateMessageListener"/>
     </bean>
 
-    <bean id="generateAuctionMessageListenerContainer" class="org.springframework.kafka.listener.KafkaMessageListenerContainer"
+    <bean id="generateAuctionMessageListenerContainer"
+          class="org.springframework.kafka.listener.KafkaMessageListenerContainer"
           init-method="doStart">
         <constructor-arg ref="consumerFactory"/>
         <constructor-arg ref="generateAuctionContainerProperties"/>
     </bean>
+
+
+    <!-- 处理竞购请求的消息队列内容 -->
+    <bean id="auctionWorkContainerProperties" class="org.springframework.kafka.listener.config.ContainerProperties">
+        <constructor-arg name="topics" value="AUCTION_WORK_MESSAGE"/>
+        <property name="messageListener" ref="auctionWorkMessageListener"/>
+    </bean>
+    a
+    <bean id="auctionWorkMessageListenerContainer"
+          class="org.springframework.kafka.listener.KafkaMessageListenerContainer"
+          init-method="doStart">
+        <constructor-arg ref="consumerFactory"/>
+        <constructor-arg ref="auctionWorkContainerProperties"/>
+    </bean>
+
 
 </beans>

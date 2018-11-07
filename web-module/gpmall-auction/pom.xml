@@ -32,6 +32,11 @@
 
         <dependency>
             <groupId>com.gupao.edu</groupId>
+            <artifactId>gupao-redis-dependency</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gupao.edu</groupId>
             <artifactId>auction-service-api</artifactId>
             <version>1.0.1-SNAPSHOT</version>
         </dependency>

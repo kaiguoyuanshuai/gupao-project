@@ -1,5 +1,6 @@
 package com.gupao.edu.auction.service;
 
+import com.gupao.edu.auction.constants.AuctionCacheKeyConstants;
 import com.gupao.edu.auction.dal.entity.AuctionDetail;
 import com.gupao.edu.auction.dal.persistence.AuctionDetailMapper;
 import com.gupao.edu.auction.dto.AuctionActivityInfoDto;
@@ -18,7 +19,6 @@ import org.springframework.stereotype.Service;
 @Service("auctionActivityQueryService")
 public class AuctionActivityQueryServiceImpl implements AuctionActivityQueryService {
 
-    public static final String AUCTION_ACTIVITY_DETAIL = "auction:activity:detail:";
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -34,13 +34,13 @@ public class AuctionActivityQueryServiceImpl implements AuctionActivityQueryServ
         }
 
         AuctionActivityInfoDto auctionActivityInfoDto =
-                (AuctionActivityInfoDto) redisTemplate.opsForValue().get(AUCTION_ACTIVITY_DETAIL + auctionDetailRequest.getId());
+                (AuctionActivityInfoDto) redisTemplate.opsForValue().get(AuctionCacheKeyConstants.AUCTION_ACTIVITY_DETAIL + auctionDetailRequest.getId());
 
         if (auctionActivityInfoDto == null) {
             AuctionDetail auctionDetail = auctionDetailMapper.selectByPrimaryKey(auctionDetailRequest.getId());
             auctionActivityInfoDto = convertAuctionActivityInfoDto(auctionDetail);
             if (auctionDetail != null) {
-                redisTemplate.opsForValue().set(AUCTION_ACTIVITY_DETAIL + auctionDetailRequest.getId(), auctionActivityInfoDto);
+                redisTemplate.opsForValue().set(AuctionCacheKeyConstants.AUCTION_ACTIVITY_DETAIL + auctionDetailRequest.getId(), auctionActivityInfoDto);
             }
         }
 
