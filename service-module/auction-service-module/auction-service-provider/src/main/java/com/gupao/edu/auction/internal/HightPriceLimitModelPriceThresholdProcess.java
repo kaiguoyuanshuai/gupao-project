@@ -19,7 +19,7 @@ public class HightPriceLimitModelPriceThresholdProcess extends AuctionPriceThres
     @Override
     public BaseResponse buildModelAuctionPriceWay(AuctionDetail auctionDetail) {
         BaseResponse baseResponse = new BaseResponse();
-        if (!StringUtils.equals(auctionDetail.getAuctionMode(), "MOMOMO")) {
+        if (!StringUtils.equals(auctionDetail.getAuctionMode(), "TODO")) {
             return baseResponse.fail();
         }
 
@@ -27,6 +27,8 @@ public class HightPriceLimitModelPriceThresholdProcess extends AuctionPriceThres
                 .divide(new BigDecimal(auctionDetail.getAuctionPerPrice()), 0, RoundingMode.DOWN);
         int times = buildTimes.intValue();
 
+
+        //算出需要设置多少次
         for (int j = 1; j <= times; j++) {
             long price = new BigDecimal(auctionDetail.getAuctionPerPrice()).multiply(new BigDecimal(times)).longValue();
             BaseResponse baseResponse1 = buildAuctionThresholdPrice(auctionDetail, price);
