@@ -78,6 +78,13 @@ public class AuctionDetail extends BaseBean {
      */
     private BigDecimal auctionFinalPrice;
 
+
+    /**
+     * 竞拍起拍价格
+     */
+    private BigDecimal auctionStartPrice ;
+
+
     /**
      * <pre>
      * 实际最终成交价格（竞拍没有成功，则展示出价最高价格）
@@ -302,5 +309,13 @@ public class AuctionDetail extends BaseBean {
      */
     public void setAuctionStatus(String auctionStatus) {
         this.auctionStatus = auctionStatus == null ? null : auctionStatus.trim();
+    }
+
+    public BigDecimal getAuctionStartPrice() {
+        return auctionStartPrice;
+    }
+
+    public void setAuctionStartPrice(BigDecimal auctionStartPrice) {
+        this.auctionStartPrice = auctionStartPrice;
     }
 }

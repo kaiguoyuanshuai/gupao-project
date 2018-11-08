@@ -23,7 +23,7 @@
         <constructor-arg name="topics" value="AUCTION_WORK_MESSAGE"/>
         <property name="messageListener" ref="auctionWorkMessageListener"/>
     </bean>
-    a
+
     <bean id="auctionWorkMessageListenerContainer"
           class="org.springframework.kafka.listener.KafkaMessageListenerContainer"
           init-method="doStart">

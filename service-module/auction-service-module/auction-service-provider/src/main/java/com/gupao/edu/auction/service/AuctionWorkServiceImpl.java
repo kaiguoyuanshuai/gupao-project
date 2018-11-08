@@ -29,6 +29,8 @@ public class AuctionWorkServiceImpl implements AuctionWorkService {
     }
 
     private void checkAuctionWorkParam(AuctionWorkRequest auctionWorkRequest) {
+
+
     }
 
 

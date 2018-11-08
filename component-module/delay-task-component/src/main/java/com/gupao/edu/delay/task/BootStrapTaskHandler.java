@@ -2,7 +2,7 @@ package com.gupao.edu.delay.task;
 
 import com.gupao.edu.delay.task.constants.DelayTaskConstants;
 import com.gupao.edu.delay.task.job.JobDetail;
-import com.gupao.edu.serviceext.common.utils.JsonUtils;
+import com.gupao.edu.serviceext.common.utils.GPJsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,12 +69,12 @@ public class BootStrapTaskHandler implements Runnable {
             for (ZSetOperations.TypedTuple typedTuple : set) {
                 String json = typedTuple.getValue().toString();
                 logger.debug("任务分发参数:{}", json);
-                JobDetail jobDetail = (JobDetail) JsonUtils.json2Object(json, JobDetail.class);
+                JobDetail jobDetail = (JobDetail) GPJsonUtils.json2Object(json, JobDetail.class);
                 //防止部署多套程序的时候出现并发问题
                 if (redisTemplate.opsForZSet().remove(DelayTaskConstants.DELAY_TASK_PREFIX, typedTuple.getValue()) > 0) {
                     logger.info("处理一条延时任务消息:ID:{}", jobDetail.getJobSeId());
                     try {
-                        kafkaTemplate.send(jobDetail.getJobTopic(), JsonUtils.toJson(jobDetail.getJobDetail()));
+                        kafkaTemplate.send(jobDetail.getJobTopic(), GPJsonUtils.toJson(jobDetail.getJobDetail()));
                     } catch (Exception ex) {
                         logger.error("执行发送定时任务消息队列的时候出现异常!", ex);
                     }

@@ -73,13 +73,18 @@ public class AuctionController extends BaseController {
 
         //再判断指令是否存在，防攻击服务端
         //sismember 操作
-        Boolean member = redisTemplate.opsForSet().isMember(AuctionCacheKeyConstants.AUCTION_SECURITY_KEY + "", auctionWorkRequest.getAuctionKey());
+        //  Boolean member = redisTemplate.opsForSet().isMember(AuctionCacheKeyConstants.AUCTION_SECURITY_KEY + auctionActivityInfoDto.getId(), auctionWorkRequest.getAuctionKey());
+        Double score = redisTemplate.opsForZSet().score(AuctionCacheKeyConstants.AUCTION_SECURITY_KEY + auctionActivityInfoDto.getId(), auctionWorkRequest.getAuctionKey());
+
 
         //如果不存在，则返回失败
-        if (!member) {
+        if (score <= 0) {
             //活动不存在，或者手速太慢
             return ResponseData.FAILED();
         }
+
+        //判断保证金是否符合最低要求 TODO
+
 
         //发出竞购的消息队列
 
