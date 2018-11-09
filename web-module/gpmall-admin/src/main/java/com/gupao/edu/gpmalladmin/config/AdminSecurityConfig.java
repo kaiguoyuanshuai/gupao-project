@@ -4,7 +4,6 @@ package com.gupao.edu.gpmalladmin.config;
 import com.gupao.edu.gpmalladmin.handler.Securityhandler;
 import com.gupao.edu.gpmalladmin.interceptor.DefinedFilterSecurityInterceptor;
 import com.gupao.edu.gpmalladmin.properties.SecurityConfProperties;
-import com.gupao.edu.gpmalladmin.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,9 +35,12 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DefinedFilterSecurityInterceptor definedFilterSecurityInterceptor;
 
+    @Autowired
+    private UserDetailsService customUserDetailsService ;
+
     @Bean
     public UserDetailsService userDetailsService() {
-        return new CustomUserDetailsService();
+        return customUserDetailsService;
     }
 
     @Override
@@ -90,7 +92,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     public static void main(String[] args) {
-        System.out.println();
+        System.out.println(new BCryptPasswordEncoder().encode("admin"));
     }
 
 }

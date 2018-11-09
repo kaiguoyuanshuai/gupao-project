@@ -17,7 +17,7 @@ public class UserManageServiceImpl implements UserManageService {
 
         UserInfoBean userInfoBean = new UserInfoBean() ;
         userInfoBean.setAccount("admin");
-        userInfoBean.setPassword("$2a$10$BDF7icM2WaWF2UUTfoPHz.kgddGj6Z1QFn6NICnMibgGlAMxvEYEe");
+        userInfoBean.setPassword("$2a$10$ENvP2NJ2OrUcl9LtjJBSGejgxpDyTKGxYkEOC92z17iD5DDC1ylVm");
 
         return userInfoBean;
     }
