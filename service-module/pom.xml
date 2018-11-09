@@ -15,6 +15,7 @@
         <module>activity-service-module</module>
         <module>pay-service-module</module>
         <module>auction-service-module</module>
+        <module>authorize-service-module</module>
     </modules>
 
 </project>

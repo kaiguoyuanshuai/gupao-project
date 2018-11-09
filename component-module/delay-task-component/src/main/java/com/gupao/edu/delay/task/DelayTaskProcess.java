@@ -3,7 +3,7 @@ package com.gupao.edu.delay.task;
 import com.gupao.edu.delay.task.enums.DelayTaskErrorCodeEnum;
 import com.gupao.edu.delay.task.job.JobDetail;
 import com.gupao.edu.serviceext.common.dto.BaseResponse;
-import com.gupao.edu.serviceext.common.utils.JsonUtils;
+import com.gupao.edu.serviceext.common.utils.GPJsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,7 @@ public class DelayTaskProcess {
             return new BaseResponse().fail(DelayTaskErrorCodeEnum.PPARAM_ILLEGAL);
         }
 
-        Boolean result = redisTemplate.opsForZSet().add(DELAY_TASK_PREFIX, JsonUtils.toJson(jobDetail), jobDetail.getTime());
+        Boolean result = redisTemplate.opsForZSet().add(DELAY_TASK_PREFIX, GPJsonUtils.toJson(jobDetail), jobDetail.getTime());
         if (result) {
             return new BaseResponse().success();
         }
@@ -53,7 +53,7 @@ public class DelayTaskProcess {
         }
 
 
-        Long remove = redisTemplate.opsForZSet().remove(DELAY_TASK_PREFIX, JsonUtils.toJson(jobDetail));
+        Long remove = redisTemplate.opsForZSet().remove(DELAY_TASK_PREFIX, GPJsonUtils.toJson(jobDetail));
         if (remove > 0) {
             return new BaseResponse().success();
         }

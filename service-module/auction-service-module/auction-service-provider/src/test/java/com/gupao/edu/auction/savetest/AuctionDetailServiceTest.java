@@ -34,8 +34,8 @@ public class AuctionDetailServiceTest {
     @Test
     public void testInsert() {
         AuctionDetailRequest auctionDetailRequest = new AuctionDetailRequest();
-        auctionDetailRequest.setId(100001);
-        auctionDetailRequest.setProductId(10);
+        auctionDetailRequest.setId("100001");
+        auctionDetailRequest.setProductId("10");
         auctionDetailRequest.setAuctionPerPrice("1000");
         auctionDetailRequest.setAuctionProductMinimumPrice(new BigDecimal("5000"));
         auctionDetailRequest.setAuctionStartTime(new Date());
