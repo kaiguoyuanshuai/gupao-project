@@ -7,4 +7,7 @@
 	<dubbo:service interface="com.gupao.edu.authorize.provider.service.AuthorityService"
 				   ref="authorityService" timeout="3000"/>
 
+	<dubbo:service interface="com.gupao.edu.authorize.provider.service.UserManageService"
+				   ref="userManageService" timeout="3000"/>
+
 </beans>

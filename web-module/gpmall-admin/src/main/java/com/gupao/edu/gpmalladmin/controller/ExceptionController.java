@@ -3,7 +3,7 @@ package com.gupao.edu.gpmalladmin.controller;
 import com.gupao.edu.gpmalladmin.builder.ErrorInfoBuilder;
 import com.gupao.edu.gpmalladmin.vo.ErrorInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

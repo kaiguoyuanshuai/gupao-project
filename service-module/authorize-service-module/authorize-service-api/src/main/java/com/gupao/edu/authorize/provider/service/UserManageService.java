@@ -1,7 +1,7 @@
-package com.gupao.edu.user.service;
+package com.gupao.edu.authorize.provider.service;
 
 
-import com.gupao.edu.user.vo.UserInfoBean;
+import com.gupao.edu.authorize.vo.UserInfoBean;
 
 /**
  * Created by zhengkk19738 on 2018/3/8.

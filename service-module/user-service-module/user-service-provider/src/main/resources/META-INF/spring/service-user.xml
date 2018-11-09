@@ -10,7 +10,5 @@
 	<dubbo:service interface="com.gupao.edu.user.service.IJsonWebTokenService"
 				   ref="jsonWebTokenService" timeout="3000"/>
 
-	<dubbo:service interface="com.gupao.edu.user.service.UserManageService"
-				   ref="userManageService" timeout="3000"/>
 
 </beans>

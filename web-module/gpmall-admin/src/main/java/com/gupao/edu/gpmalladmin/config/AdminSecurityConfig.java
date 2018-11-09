@@ -89,4 +89,8 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
+    public static void main(String[] args) {
+        System.out.println();
+    }
+
 }

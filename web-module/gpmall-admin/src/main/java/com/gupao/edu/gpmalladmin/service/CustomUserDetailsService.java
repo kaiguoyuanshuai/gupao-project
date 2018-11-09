@@ -2,8 +2,8 @@ package com.gupao.edu.gpmalladmin.service;
 
 
 import com.gupao.edu.authorize.provider.service.AuthorityService;
-import com.gupao.edu.user.service.UserManageService;
-import com.gupao.edu.user.vo.UserInfoBean;
+import com.gupao.edu.authorize.provider.service.UserManageService;
+import com.gupao.edu.authorize.vo.UserInfoBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

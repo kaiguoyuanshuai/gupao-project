@@ -1,7 +1,7 @@
 package com.gupao.edu.gpmalladmin.filter;
 
 
-import com.gupao.edu.user.vo.UserInfoBean;
+import com.gupao.edu.authorize.vo.UserInfoBean;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;

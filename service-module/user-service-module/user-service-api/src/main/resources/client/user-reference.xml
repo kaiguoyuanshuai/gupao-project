@@ -17,6 +17,4 @@
     <dubbo:reference id="jsonWebTokenService"
                      interface="com.gupao.edu.user.service.IJsonWebTokenService"/>
 
-    <dubbo:reference id="userManageService"
-                     interface="com.gupao.edu.user.service.UserManageService" />
 </beans>

@@ -1,4 +1,4 @@
-package com.gupao.edu.user.vo;
+package com.gupao.edu.authorize.vo;
 
 import com.gupao.edu.serviceext.common.dto.BaseBean;
 

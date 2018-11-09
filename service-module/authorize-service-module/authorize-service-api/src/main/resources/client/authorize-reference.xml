@@ -15,4 +15,6 @@
                      interface="com.gupao.edu.authorize.provider.service.AuthorityService"/>
 
 
+    <dubbo:reference id="userManageService"
+                     interface="com.gupao.edu.authorize.provider.service.UserManageService" />
 </beans>
