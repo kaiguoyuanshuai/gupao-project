@@ -23,29 +23,29 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://mysql:3306/activity?useUnicode=true"
-                        userId="root"
-                        password="Zkk765696946@">
+                        connectionURL="jdbc:mysql://rm-bp1w3ot70wra9717z8o.mysql.rds.aliyuncs.com:3306/hsldev1_5?useUnicode=true"
+                        userId="blockchain"
+                        password="Blockchain1234">
         </jdbcConnection>
 
         <javaTypeResolver >
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.gupao.edu" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.hundsun.hsl.fin.domain" targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.gupao.edu"  targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="com.hundsun.hsl.fin.dao"  targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.gupao.edu"  targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.hundsun.hsl.fin.dao"  targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="activity_record" domainObjectName="ActivityRecord" >
+        <table tableName="credits_amount_apply" domainObjectName="CreditsAmountApply" >
             <property name="ignoreQualifiersAtRuntime" value="false"/>
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="ID" sqlStatement="MySql" identity="true" />
