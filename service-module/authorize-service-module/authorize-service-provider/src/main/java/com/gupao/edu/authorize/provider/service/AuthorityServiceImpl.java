@@ -52,7 +52,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 
         List<AuthDetailBean> lists = new ArrayList<>();
         AuthDetailBean authDetailBean = new AuthDetailBean();
-        authDetailBean.setExpression("/auth**");
+        authDetailBean.setExpression("/**");
         authDetailBean.setAuthCode("ROLE_ADMIN");
         lists.add(authDetailBean);
         AuthDetailBean authDetailBean2 = new AuthDetailBean();

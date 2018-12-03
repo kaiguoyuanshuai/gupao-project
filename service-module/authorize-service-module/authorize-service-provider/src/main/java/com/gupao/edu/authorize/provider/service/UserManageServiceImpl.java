@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * @auth zhengkk19738
  * @time 2018/11/9
  */
-@Service("userManageService")
+@Service
 public class UserManageServiceImpl implements UserManageService {
 
 
@@ -17,7 +17,7 @@ public class UserManageServiceImpl implements UserManageService {
 
         UserInfoBean userInfoBean = new UserInfoBean() ;
         userInfoBean.setAccount("admin");
-        userInfoBean.setPassword("$2a$10$ENvP2NJ2OrUcl9LtjJBSGejgxpDyTKGxYkEOC92z17iD5DDC1ylVm");
+        userInfoBean.setPassword("$2a$10$bo0uxHroAWpgGxOSYHNWm.0muLgwjBTcFNG.5/czWyXLazGKFC9rK");
 
         return userInfoBean;
     }

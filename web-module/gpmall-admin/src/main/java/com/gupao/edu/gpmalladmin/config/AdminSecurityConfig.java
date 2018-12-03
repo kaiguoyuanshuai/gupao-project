@@ -2,7 +2,7 @@ package com.gupao.edu.gpmalladmin.config;
 
 
 import com.gupao.edu.gpmalladmin.handler.Securityhandler;
-import com.gupao.edu.gpmalladmin.interceptor.DefinedFilterSecurityInterceptor;
+import com.gupao.edu.gpmalladmin.metadata.ReqeustFilterSecurityMetadataSource;
 import com.gupao.edu.gpmalladmin.properties.SecurityConfProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +15,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
@@ -33,10 +32,10 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
     private Securityhandler successHandler;
 
     @Autowired
-    private DefinedFilterSecurityInterceptor definedFilterSecurityInterceptor;
+    private ReqeustFilterSecurityMetadataSource reqeustFilterSecurityMetadataSource;
 
     @Autowired
-    private UserDetailsService customUserDetailsService ;
+    private UserDetailsService customUserDetailsService;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -53,7 +52,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.authorizeRequests()  // 定义哪些URL需要被保护、哪些不需要被保护
                 .antMatchers(
                         "/favicon.ico",
                         "/webjars/**",
@@ -68,15 +67,16 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login.html")
                 .defaultSuccessUrl("/index.html")
-               // .failureUrl("/login.html?error")
+                // .failureUrl("/login.html?error")
                 .permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login.html")
                 .permitAll()
         ;
-        http.addFilterBefore(definedFilterSecurityInterceptor, FilterSecurityInterceptor.class);
+       // http.addFilterBefore(definedFilterSecurityInterceptor, FilterSecurityInterceptor.class);
         http.cors().disable();
-        http.headers().frameOptions().sameOrigin() ;
+        http.headers().frameOptions().sameOrigin();
+        http.csrf().disable();          // 关闭csrf防护
     }
 
     /**
@@ -87,7 +87,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/common/**", "/module/**", "/**/favicon.ico","/larryms/**");
+        web.ignoring().antMatchers("/common/**", "/module/**", "/**/favicon.ico", "/larryms/**");
     }
 
 

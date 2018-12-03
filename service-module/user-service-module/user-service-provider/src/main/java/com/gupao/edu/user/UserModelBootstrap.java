@@ -7,7 +7,7 @@ import com.alibaba.dubbo.container.Main;
  * 加群获取视频：608583947
  * 风骚的Michael 老师
  */
-public class Bootstrap {
+public class UserModelBootstrap {
 
     public static void main(String[] args) {
         Main.main(args);
