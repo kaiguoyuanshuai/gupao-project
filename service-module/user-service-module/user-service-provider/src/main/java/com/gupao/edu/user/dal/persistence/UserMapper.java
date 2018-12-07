@@ -11,9 +11,11 @@ import com.gupao.edu.user.dal.entity.User;
 public interface UserMapper {
 
     /**
-     *
      * @return
      */
     User getUserByUserName(String userName);
+
+
+    void insertSelective(User user);
 
 }

@@ -10,12 +10,15 @@ import com.gupao.edu.user.dto.UserLoginRequest;
 import com.gupao.edu.user.dto.UserLoginResponse;
 import com.gupao.edu.user.enums.UserResponseCodeEnum;
 import com.gupao.edu.user.service.IUserLoginService;
+import com.gupao.edu.user.utils.JwtTokenUtils;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.gupao.edu.user.utils.JwtTokenUtils;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +34,10 @@ public class UserLoginServiceImpl implements IUserLoginService {
 
     Logger Log = LoggerFactory.getLogger(this.getClass());
 
+
+    @Autowired
+    TransactionTemplate transactionTemplate;
+
     @Autowired
     UserMapper userMapper;
 
@@ -45,9 +52,9 @@ public class UserLoginServiceImpl implements IUserLoginService {
                 response.fail(UserResponseCodeEnum.USERORPASSWORD_ERRROR);
                 return response;
             }
-            Map<String,Object> map=new HashMap<>();
-            map.put("uid",user.getId());
-            map.put("exp", DateTime.now().plusSeconds(40).toDate().getTime()/1000);
+            Map<String, Object> map = new HashMap<>();
+            map.put("uid", user.getId());
+            map.put("exp", DateTime.now().plusSeconds(40).toDate().getTime() / 1000);
 
             response.setToken(JwtTokenUtils.generatorToken(map));
             response.setUid(user.getId());
@@ -63,6 +70,25 @@ public class UserLoginServiceImpl implements IUserLoginService {
         return response;
     }
 
+    @Override
+    public void insert() {
+
+        transactionTemplate.execute(new TransactionCallback<Object>() {
+            @Override
+            public Object doInTransaction(TransactionStatus status) {
+                User user = new User();
+                user.setId(1);
+                user.setRealname("AAA");
+                userMapper.insertSelective(user);
+                userMapper.insertSelective(user);
+                status.setRollbackOnly();
+                return null;
+            }
+        });
+
+
+    }
+
     private void beforeValidate(UserLoginRequest request) {
         if (request == null) {
             throw new ValidateException("请求对象为空");
@@ -74,4 +100,6 @@ public class UserLoginServiceImpl implements IUserLoginService {
             throw new ValidateException("密码为空");
         }
     }
+
+
 }

@@ -18,6 +18,13 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+	<bean id="transactionTemplate"
+		  class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManager"/>
+	</bean>
+
+<!--
+
 	<tx:advice id="transactionTxAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="remove*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" no-rollback-for="java.lang.RuntimeException" />
@@ -42,5 +49,6 @@
 		<aop:pointcut id="pc" expression="execution(public * com.gupao.edu.*.service.*.*(..))" />
 		<aop:advisor pointcut-ref="pc" advice-ref="transactionTxAdvice" />
 	</aop:config>
+-->
 
 </beans>

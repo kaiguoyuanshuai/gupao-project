@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>gpmall-sso</artifactId>
+    <artifactId>gpmall-dubbo</artifactId>
     <packaging>war</packaging>
 
-    <name>gpmall-sso</name>
+    <name>gpmall-dubbo</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -32,18 +32,16 @@
             <version>1.0.1-SNAPSHOT</version>
         </dependency>
 
-<!--
         <dependency>
             <groupId>com.gupao.edu</groupId>
             <artifactId>gupao-kafka-producer-dependency</artifactId>
         </dependency>
--->
 
-<!--        <dependency>
+        <dependency>
             <groupId>com.gupao.edu</groupId>
             <artifactId>delay-task-component</artifactId>
             <version>1.0.1-SNAPSHOT</version>
-        </dependency>-->
+        </dependency>
 
     </dependencies>
 

@@ -5,7 +5,7 @@ import com.alibaba.dubbo.container.Main;
 /**
  *
  */
-public class Bootstrap {
+public class AuthorityModelBootstrap {
 
     public static void main(String[] args) {
         Main.main(args);

@@ -1,7 +1,6 @@
 package com.gupao.edu.user.service;
 
 import com.gupao.edu.user.dto.UserLoginRequest;
-import com.gupao.edu.serviceext.common.dto.BaseResponse;
 import com.gupao.edu.user.dto.UserLoginResponse;
 
 /**
@@ -16,4 +15,7 @@ public interface IUserLoginService {
      * @return
      */
     UserLoginResponse login(UserLoginRequest userLoginRequest);
+
+
+    void insert() ;
 }
