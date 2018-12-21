@@ -15,7 +15,7 @@ public class User {
     private String mobile;
     private String sex;
     private int status;
-    private String create_time;
+    private String createTime;
 
     public int getId() {
         return id;
@@ -81,12 +81,12 @@ public class User {
         this.status = status;
     }
 
-    public String getCreate_time() {
-        return create_time;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(String create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
     @Override
@@ -100,7 +100,7 @@ public class User {
                 ", mobile='" + mobile + '\'' +
                 ", sex='" + sex + '\'' +
                 ", status=" + status +
-                ", create_time='" + create_time + '\'' +
+                ", create_time='" + createTime + '\'' +
                 '}';
     }
 }

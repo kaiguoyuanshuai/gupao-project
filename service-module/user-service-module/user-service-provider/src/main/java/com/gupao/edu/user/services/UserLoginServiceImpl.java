@@ -41,6 +41,12 @@ public class UserLoginServiceImpl implements IUserLoginService {
     @Autowired
     UserMapper userMapper;
 
+    @Autowired
+    private TestServiceImpl testServiceImpl ;
+
+    @Autowired
+    private TestServiceImpl2 testServiceImpl2 ;
+
     @Override
     public UserLoginResponse login(UserLoginRequest request) {
         Log.info("login request:" + request);
@@ -72,16 +78,11 @@ public class UserLoginServiceImpl implements IUserLoginService {
 
     @Override
     public void insert() {
-
         transactionTemplate.execute(new TransactionCallback<Object>() {
             @Override
             public Object doInTransaction(TransactionStatus status) {
-                User user = new User();
-                user.setId(1);
-                user.setRealname("AAA");
-                userMapper.insertSelective(user);
-                userMapper.insertSelective(user);
-                status.setRollbackOnly();
+                testServiceImpl2.insert() ;
+                testServiceImpl.insert() ;
                 return null;
             }
         });
