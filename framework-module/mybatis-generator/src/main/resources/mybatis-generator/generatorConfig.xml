@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
 
-    <classPathEntry location="D:\develop\mavenrepository\mysql\mysql-connector-java\5.1.39\mysql-connector-java-5.1.39.jar" />
+    <classPathEntry location="D:\developTools\mavenrepository-home\mysql\mysql-connector-java\5.1.37\mysql-connector-java-5.1.37.jar" />
 
     <context id="mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
 
@@ -23,9 +23,9 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://mysql:3306/test?useUnicode=true"
-                        userId="root"
-                        password="Zkk765696946@">
+                        connectionURL="jdbc:mysql://rm-bp1w3ot70wra9717z8o.mysql.rds.aliyuncs.com:3306/hsldev1_5?useUnicode=true"
+                        userId="blockchain"
+                        password="Blockchain1234">
         </jdbcConnection>
 
         <javaTypeResolver >
@@ -45,11 +45,11 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="t_user" domainObjectName="UserPageQueryMapper" >
+        <table tableName="credits_particulars_record" domainObjectName="CreditsParticularsRecord" >
             <property name="ignoreQualifiersAtRuntime" value="false"/>
             <property name="useActualColumnNames" value="false"/>
-            <generatedKey column="F_ID" sqlStatement="MySql" identity="true" />
-            <columnOverride column="F_ID" jdbcType="VARCHAR" />
+            <generatedKey column="ID" sqlStatement="MySql" identity="true" />
+            <columnOverride column="ID" jdbcType="VARCHAR" />
         </table>
 
     </context>

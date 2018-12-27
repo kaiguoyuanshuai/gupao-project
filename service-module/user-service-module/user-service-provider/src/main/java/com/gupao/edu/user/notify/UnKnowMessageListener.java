@@ -1,7 +1,5 @@
 package com.gupao.edu.user.notify;
 
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.springframework.kafka.listener.MessageListener;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,8 +8,8 @@ import org.springframework.stereotype.Service;
  * 风骚的Michael 老师
  */
 @Service
-public class UnKnowMessageListener implements MessageListener<Integer, String> {
-
+public class UnKnowMessageListener {//implements MessageListener<Integer, String> {
+/*
     int io  = 0 ;
 
     @Override
@@ -20,5 +18,5 @@ public class UnKnowMessageListener implements MessageListener<Integer, String> {
         System.out.println(integerStringConsumerRecord.value());
         io+=1 ;
         System.out.println("一共有:"+io);
-    }
+    }*/
 }

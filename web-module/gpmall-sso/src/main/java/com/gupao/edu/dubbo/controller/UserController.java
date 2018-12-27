@@ -1,7 +1,5 @@
-package com.gupao.edu.sso.controller;
+package com.gupao.edu.dubbo.controller;
 
-import com.gupao.edu.delay.task.DelayTaskProcess;
-import com.gupao.edu.delay.task.job.JobDetail;
 import com.gupao.edu.user.dto.UserLoginRequest;
 import com.gupao.edu.user.dto.UserLoginResponse;
 import com.gupao.edu.user.service.IUserLoginService;
@@ -10,15 +8,11 @@ import com.gupao.edu.web.config.GpMallWebProperties;
 import com.gupao.edu.web.controller.BaseController;
 import com.gupao.edu.web.support.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 @RestController
@@ -30,11 +24,13 @@ public class UserController extends BaseController {
     @Autowired
     private GpMallWebProperties gpMallWebProperties;
 
+/*
     @Autowired
     private DelayTaskProcess delayTaskProcess;
 
     @Autowired
     KafkaTemplate kafkaTemplate;
+*/
 
 
     @PostMapping("/login")
@@ -56,20 +52,7 @@ public class UserController extends BaseController {
     @RequestMapping("/test")
     @Anoymous
     public ResponseData test(String time) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try { //"2018-11-1 17:10:27"
-            Date parse = simpleDateFormat.parse(time);
-            for (int i = 0; i <10 ; i++) {
-                JobDetail JobDetail = new JobDetail(i+"task","test", "wobushiceshi", parse.getTime(), parse) ;
-                delayTaskProcess.put(JobDetail);
-            }
-            JobDetail deletedJobDetail = new JobDetail(1+"task","test", "wobushiceshi", parse.getTime(), parse) ;
-            delayTaskProcess.delete(deletedJobDetail) ;
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        // kafkaTemplate.send("test", "valuesss");
+        userLoginService.insert();
 
         return null;
     }
