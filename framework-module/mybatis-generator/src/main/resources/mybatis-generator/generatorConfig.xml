@@ -23,29 +23,29 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://rm-bp1w3ot70wra9717z8o.mysql.rds.aliyuncs.com:3306/hsldev1_5?useUnicode=true"
-                        userId="blockchain"
-                        password="Blockchain1234">
+                        connectionURL="jdbc:mysql://47.98.131.177:3306/test?useUnicode=true"
+                        userId="root"
+                        password="Zkk765696946@">
         </jdbcConnection>
 
         <javaTypeResolver >
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.hundsun.hsl.fin.domain" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.gupao.edu.integral.dal.entity" targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.hundsun.hsl.fin.dao"  targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="com.gupao.edu.integral.dal.persistence"  targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.hundsun.hsl.fin.dao"  targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.gupao.edu.integral.dal.persistence"  targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="credits_particulars_record" domainObjectName="CreditsParticularsRecord" >
+        <table tableName="integral_account_detail" domainObjectName="IntegralAccountDetail" >
             <property name="ignoreQualifiersAtRuntime" value="false"/>
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="ID" sqlStatement="MySql" identity="true" />
