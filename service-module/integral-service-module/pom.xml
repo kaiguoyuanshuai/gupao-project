@@ -3,20 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>gupao-project</artifactId>
+        <artifactId>service-module</artifactId>
         <groupId>com.gupao.edu</groupId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>service-module</artifactId>
+
+    <artifactId>integral-service-module</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>user-service-module</module>
-        <module>activity-service-module</module>
-        <module>pay-service-module</module>
-        <module>auction-service-module</module>
-        <module>authorize-service-module</module>
-        <module>integral-service-module</module>
+        <module>integral-service-api</module>
+        <module>integral-service-provider</module>
     </modules>
+
 
 </project>
