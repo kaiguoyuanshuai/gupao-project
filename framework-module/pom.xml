@@ -25,6 +25,7 @@
         <module>mybatis-generator-core</module>
         <module>archetype-dependency</module>
         <module>gupao-redis-dependency</module>
+        <module>gupao-rabbitmq-producer-dependecy</module>
     </modules>
 
 

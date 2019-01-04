@@ -1,11 +1,11 @@
 package com.gupao.edu.integral.services;
 
-import com.gupao.edu.integral.dal.entity.IntegralAccount;
 import com.gupao.edu.integral.dal.persistence.IntegralAccountMapper;
 import com.gupao.edu.integral.dto.IntegralAccountRequest;
 import com.gupao.edu.integral.dto.IntegralAccountResponse;
 import com.gupao.edu.integral.enums.IntegralAccountResponseCodeEnum;
 import com.gupao.edu.integral.service.IntegralAccountService;
+import com.gupao.edu.integral.vo.IntegralAccount;
 import com.gupao.edu.serviceext.common.dto.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +36,11 @@ public class IntegralAccountServiceImpl implements IntegralAccountService {
         integralAccount.setScoreBalance(integralAccountRequest.getScoreBalance());
         int insert = integralAccountMapper.insert(integralAccount);
         return integralAccountResponse.success();
+    }
+
+    @Override
+    public com.gupao.edu.integral.vo.IntegralAccount queryIntgralAccountInfo(IntegralAccountRequest integralAccountRequest) {
+        return null;
     }
 
     private boolean validateParam(IntegralAccountRequest integralAccountRequest) {

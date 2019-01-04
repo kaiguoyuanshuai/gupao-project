@@ -1,4 +1,4 @@
-package com.gupao.edu.integral.dal.entity;
+package com.gupao.edu.integral.vo;
 
 public class IntegralAccount {
     /**

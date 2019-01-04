@@ -1,5 +1,6 @@
 package com.gupao.edu.integral.dal.persistence;
 
+
 import com.gupao.edu.integral.dal.entity.IntegralAccountDetail;
 
 import java.util.List;

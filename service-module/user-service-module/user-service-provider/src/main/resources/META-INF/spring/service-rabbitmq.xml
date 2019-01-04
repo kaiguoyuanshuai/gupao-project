@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+    <!--配置连接-->
+    <rabbit:connection-factory id="connectionFactory" host="${rabbitmq.host}" port="${rabbitmq.port}"
+                               username="${rabbitmq.username}" password="${rabbitmq.password}" virtual-host="/"
+                               requested-heartbeat="60"/>
+
+    <!--配置RabbitTemplate-->
+    <rabbit:template id="amqpTemplate" connection-factory="connectionFactory"
+                     exchange="creditExchange" message-converter="fastJsonMessageConverter"/>
+
+    <!--配置RabbitAdmin-->
+    <rabbit:admin connection-factory="connectionFactory"/>
+
+    <!--配置队列名-->
+    <!-- durable 是否需要持久化  -->
+    <!-- auto-delete 消费者断开连接的时候是否删除队列  -->
+    <!--    <rabbit:queue name="creditScoreQueue" durable="true" auto-delete="false"/>-->
+
+    <!--配置topic类型exchange-->
+    <rabbit:direct-exchange name="creditExchange">
+        <!--  <rabbit:bindings>
+              <rabbit:binding queue="creditScoreQueue" key="credit.score.init"/>
+          </rabbit:bindings>-->
+    </rabbit:direct-exchange>
+
+</beans>
