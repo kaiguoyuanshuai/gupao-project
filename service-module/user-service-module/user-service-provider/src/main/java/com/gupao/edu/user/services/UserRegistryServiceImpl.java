@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
  * @time 2019/1/4
  */
 @Service("userRegistryService")
-public class IUserRegistryServiceImpl implements IUserRegistryService {
+public class UserRegistryServiceImpl implements IUserRegistryService {
 
     @Autowired
     private IUserService userService;
@@ -30,7 +30,7 @@ public class IUserRegistryServiceImpl implements IUserRegistryService {
     @Override
     public BaseResponse registry(UserRequest userRequest) {
         UserResponse userResponse = new UserResponse();
-        if (validateParam(userRequest)) {
+        if (!validateParam(userRequest)) {
             return userResponse.fail();
         }
         //存储到数据库中

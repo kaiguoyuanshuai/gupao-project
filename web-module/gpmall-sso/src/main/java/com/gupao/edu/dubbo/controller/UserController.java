@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.UUID;
 
 
 @RestController
@@ -25,7 +26,7 @@ public class UserController extends BaseController {
     private IUserLoginService userLoginService;
 
     @Autowired
-    private IUserRegistryService userRegistryService ;
+    private IUserRegistryService userRegistryService;
 
     @Autowired
     private GpMallWebProperties gpMallWebProperties;
@@ -58,8 +59,8 @@ public class UserController extends BaseController {
     @RequestMapping("/test")
     @Anoymous
     public ResponseData test(String time) {
-        UserRequest userRequest = new UserRequest() ;
-        userRequest.setUsername("name");
+        UserRequest userRequest = new UserRequest();
+        userRequest.setUsername("name"+UUID.randomUUID());
 
         BaseResponse registry = userRegistryService.registry(userRequest);
 

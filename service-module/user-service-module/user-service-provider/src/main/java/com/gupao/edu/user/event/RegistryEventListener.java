@@ -25,7 +25,7 @@ public class RegistryEventListener implements ApplicationListener<RegistryEvent>
 
     Logger logger = LoggerFactory.getLogger(RegistryEventListener.class);
 
-    public static final String MQ_registyr_KEY = "user.registry.event";
+    public static final String MQ_REGISTRY_KEY = "user.registry.event";
 
     @Autowired
     AmqpTemplate amqpTemplate;
@@ -42,7 +42,7 @@ public class RegistryEventListener implements ApplicationListener<RegistryEvent>
             UserRegistryMessage userRegistryMessage = new UserRegistryMessage();
             userRegistryMessage.setUserId(event.getUserId());
             userRegistryMessage.setUserName(event.getUserName());
-            amqpTemplate.convertAndSend(MQ_registyr_KEY, userRegistryMessage);
+            amqpTemplate.convertAndSend(MQ_REGISTRY_KEY, userRegistryMessage);
         }
 
     }

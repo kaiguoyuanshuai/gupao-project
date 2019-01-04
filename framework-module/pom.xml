@@ -21,7 +21,7 @@
         <module>gupao-web-dependency</module>
         <module>gupao-kafka-producer-dependency</module>
         <module>gupao-kafka-consumer-dependency</module>
-        <module>mybatis-generator</module>
+       <!-- <module>mybatis-generator</module>-->
         <module>mybatis-generator-core</module>
         <module>archetype-dependency</module>
         <module>gupao-redis-dependency</module>
