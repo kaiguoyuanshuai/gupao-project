@@ -16,6 +16,7 @@
         <module>pay-service-module</module>
         <module>auction-service-module</module>
         <module>authorize-service-module</module>
+        <module>integral-service-module</module>
     </modules>
 
 </project>

@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>gpmall-sso</module>
-        <module>gpmall-dubbo</module>
         <module>gpmall-activity</module>
         <module>gpmall-cashier</module>
         <module>gpmall-auction</module>
