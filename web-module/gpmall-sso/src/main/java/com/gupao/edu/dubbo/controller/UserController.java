@@ -1,8 +1,11 @@
 package com.gupao.edu.dubbo.controller;
 
+import com.gupao.edu.serviceext.common.dto.BaseResponse;
 import com.gupao.edu.user.dto.UserLoginRequest;
 import com.gupao.edu.user.dto.UserLoginResponse;
+import com.gupao.edu.user.dto.UserRequest;
 import com.gupao.edu.user.service.IUserLoginService;
+import com.gupao.edu.user.service.IUserRegistryService;
 import com.gupao.edu.web.annotations.Anoymous;
 import com.gupao.edu.web.config.GpMallWebProperties;
 import com.gupao.edu.web.controller.BaseController;
@@ -20,6 +23,9 @@ public class UserController extends BaseController {
 
     @Autowired
     private IUserLoginService userLoginService;
+
+    @Autowired
+    private IUserRegistryService userRegistryService ;
 
     @Autowired
     private GpMallWebProperties gpMallWebProperties;
@@ -52,9 +58,12 @@ public class UserController extends BaseController {
     @RequestMapping("/test")
     @Anoymous
     public ResponseData test(String time) {
-        userLoginService.insert();
+        UserRequest userRequest = new UserRequest() ;
+        userRequest.setUsername("name");
 
-        return null;
+        BaseResponse registry = userRegistryService.registry(userRequest);
+
+        return ResponseData.SUCCESS(registry);
     }
 
 

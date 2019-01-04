@@ -7,8 +7,8 @@ import com.gupao.edu.serviceext.common.dto.BaseResponse;
 import com.gupao.edu.serviceext.common.utils.GPJsonUtils;
 import com.gupao.edu.user.notify.UserRegistryMessage;
 import com.rabbitmq.client.Channel;
-import org.redisson.Redisson;
 import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
@@ -31,7 +31,7 @@ public class IntegralScoreInitListener implements ChannelAwareMessageListener {
     private IntegralAccountService integralAccountService;
 
     @Autowired
-    private Redisson redisson;
+    private RedissonClient redisson;
 
     public static final String INTEGRAL_SCORE_PREFIX = "SCORE-";
 
