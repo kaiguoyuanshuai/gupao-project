@@ -15,4 +15,14 @@ public interface IntegralAccountDetailMapper {
     List<IntegralAccountDetail> selectAll();
 
     int updateByPrimaryKey(IntegralAccountDetail record);
+
+    /**
+     * 根据 外部流水号查询积分消费流水信息
+     *
+     * @param outerBusinessCode
+     * @return
+     */
+    IntegralAccountDetail selectIntegralAccountDetailByBusineesCode(String outerBusinessCode);
+
+
 }

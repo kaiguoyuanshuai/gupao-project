@@ -24,7 +24,7 @@ public class IntegralAccountServiceImpl implements IntegralAccountService {
     @Override
     public BaseResponse initIntegralAccountInfo(IntegralAccountRequest integralAccountRequest) {
         IntegralAccountResponse integralAccountResponse = new IntegralAccountResponse();
-        if (validateParam(integralAccountRequest)) {
+        if (!validateParam(integralAccountRequest)) {
             return integralAccountResponse.fail(IntegralAccountResponseCodeEnum.SYS_PARAM_NOT_RIGHT);
         }
 
@@ -39,8 +39,26 @@ public class IntegralAccountServiceImpl implements IntegralAccountService {
     }
 
     @Override
-    public com.gupao.edu.integral.vo.IntegralAccount queryIntgralAccountInfo(IntegralAccountRequest integralAccountRequest) {
-        return null;
+    public BaseResponse updateINtegralAccountInfo(IntegralAccountRequest integralAccountRequest) {
+        IntegralAccountResponse integralAccountResponse = new IntegralAccountResponse();
+        if (!validateParam(integralAccountRequest)) {
+            return integralAccountResponse.fail(IntegralAccountResponseCodeEnum.SYS_PARAM_NOT_RIGHT);
+        }
+
+        IntegralAccount integralAccount = new IntegralAccount();
+        integralAccount.setId(integralAccountRequest.getId());
+        integralAccount.setUserId(integralAccountRequest.getUserId());
+        integralAccount.setUserName(integralAccountRequest.getUserName());
+        integralAccount.setAvailableScoreBalance(integralAccountRequest.getAvailableScoreBalance());
+        integralAccount.setScoreBalance(integralAccountRequest.getScoreBalance());
+
+        int insert = integralAccountMapper.updateByPrimaryKey(integralAccount);
+        return integralAccountResponse.success();
+    }
+
+    @Override
+    public IntegralAccount queryIntgralAccountInfo(IntegralAccountRequest integralAccountRequest) {
+        return integralAccountMapper.selectIntgralAccountInfoByUserId(integralAccountRequest.getUserId());
     }
 
     private boolean validateParam(IntegralAccountRequest integralAccountRequest) {

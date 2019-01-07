@@ -14,4 +14,12 @@ public interface IntegralAccountMapper {
     List<IntegralAccount> selectAll();
 
     int updateByPrimaryKey(IntegralAccount record);
+
+    /**
+     * 根据用户ID查询积分账户信息
+     *
+     * @param userId
+     * @return
+     */
+    IntegralAccount selectIntgralAccountInfoByUserId(Integer userId);
 }

@@ -19,6 +19,14 @@ public interface IntegralAccountService {
      */
     public BaseResponse initIntegralAccountInfo(IntegralAccountRequest integralAccountRequest);
 
+    /**
+     * 更新积分数据
+     *
+     * @param integralAccountRequest
+     * @return
+     */
+    public BaseResponse updateINtegralAccountInfo(IntegralAccountRequest integralAccountRequest);
+
 
     /**
      * 查询积分账号信息

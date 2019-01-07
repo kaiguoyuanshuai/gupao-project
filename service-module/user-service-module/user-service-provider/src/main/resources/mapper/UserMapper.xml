@@ -15,8 +15,8 @@
         from user where username=#{username}
     </select>
 
-    <insert id="insertSelective" parameterType="com.gupao.edu.user.dal.entity.User" keyColumn="id"
-            useGeneratedKeys="true">
+    <insert id="insertSelective" parameterType="com.gupao.edu.user.dal.entity.User"
+            useGeneratedKeys="true" keyProperty="id">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="username != null">
@@ -71,4 +71,6 @@
             </if>
         </trim>
     </insert>
+
+
 </mapper>

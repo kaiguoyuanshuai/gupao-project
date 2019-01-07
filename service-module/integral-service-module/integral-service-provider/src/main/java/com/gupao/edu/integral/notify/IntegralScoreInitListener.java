@@ -1,6 +1,8 @@
 package com.gupao.edu.integral.notify;
 
 import com.gupao.edu.integral.dto.IntegralAccountRequest;
+import com.gupao.edu.integral.dto.ScoreOperationRequest;
+import com.gupao.edu.integral.service.IntegralAccountBusinessService;
 import com.gupao.edu.integral.service.IntegralAccountService;
 import com.gupao.edu.integral.vo.IntegralAccount;
 import com.gupao.edu.serviceext.common.dto.BaseResponse;
@@ -16,6 +18,8 @@ import org.springframework.amqp.rabbit.core.ChannelAwareMessageListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /*
@@ -29,6 +33,9 @@ public class IntegralScoreInitListener implements ChannelAwareMessageListener {
 
     @Autowired
     private IntegralAccountService integralAccountService;
+
+    @Autowired
+    private IntegralAccountBusinessService integralAccountBusinessService;
 
     @Autowired
     private RedissonClient redisson;
@@ -64,19 +71,31 @@ public class IntegralScoreInitListener implements ChannelAwareMessageListener {
             }
 
             //初始化分数
-            integralAccountRequest.setAvailableScoreBalance("100");
+            integralAccountRequest.setAvailableScoreBalance("0");
             BaseResponse baseResponse = integralAccountService.initIntegralAccountInfo(integralAccountRequest);
             if (baseResponse != null && baseResponse.isSuccess()) {
                 //手动ACK
-                channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
-
+                // channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
                 //增加积分记录信息
+                ScoreOperationRequest scoreOperationRequest = new ScoreOperationRequest();
+                scoreOperationRequest.setUserId(String.valueOf(userRegistryMessage.getUserId()));
+                scoreOperationRequest.setScore(new BigDecimal(100));
+                scoreOperationRequest.setBizType("注册新用户赠送积分");
+                scoreOperationRequest.setOprationType("增加积分");
+                scoreOperationRequest.setStatus("增加积分成功");
+                //TODO 唯一ID
+                scoreOperationRequest.setOuterBusinessCode(String.valueOf(UUID.randomUUID()));
+                BaseResponse integralAccountResp = integralAccountBusinessService.increaseScore(scoreOperationRequest);
+                if (integralAccountResp == null || !integralAccountResp.isSuccess()) {
+                    LOGGER.error("新增积分失败，具体原因请查看日志");
+                }
             }
 
         } catch (Exception ex) {
+            ex.printStackTrace();
             //出现异常之后 ，检查是否已经存储到库中，如果有则进行ACK ，如果没有，则不进行
             //  channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
-
+            LOGGER.error(ex.getMessage());
         } finally {
             //手动ACK
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
