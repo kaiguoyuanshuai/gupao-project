@@ -11,6 +11,7 @@
         <result column="user_id" jdbcType="INTEGER" property="userId"/>
         <result column="integral_account_id" jdbcType="INTEGER" property="integralAccountId"/>
         <result column="opration_score" jdbcType="VARCHAR" property="oprationScore"/>
+        <result column="outer_business_code" jdbcType="VARCHAR" property="outerBusinessCode"/>
         <result column="available_score" jdbcType="VARCHAR" property="availableScore"/>
         <result column="opration_type" jdbcType="VARCHAR" property="oprationType"/>
         <result column="score_type" jdbcType="VARCHAR" property="scoreType"/>
@@ -38,11 +39,11 @@
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into integral_account_detail (user_id, integral_account_id, opration_score,
+        insert into integral_account_detail (user_id, integral_account_id, outer_business_code,opration_score,
         available_score, opration_type, score_type,
         score_status, score_source, is_deleted,
         gmt_create, gmt_modify)
-        values (#{userId,jdbcType=INTEGER}, #{integralAccountId,jdbcType=INTEGER}, #{oprationScore,jdbcType=VARCHAR},
+        values (#{userId,jdbcType=INTEGER}, #{integralAccountId,jdbcType=INTEGER},#{outerBusinessCode,jdbcType=VARCHAR}, #{oprationScore,jdbcType=VARCHAR},
         #{availableScore,jdbcType=VARCHAR}, #{oprationType,jdbcType=VARCHAR}, #{scoreType,jdbcType=VARCHAR},
         #{scoreStatus,jdbcType=VARCHAR}, #{scoreSource,jdbcType=VARCHAR}, #{isDeleted,jdbcType=VARCHAR},
         #{gmtCreate,jdbcType=VARCHAR}, #{gmtModify,jdbcType=VARCHAR})
@@ -100,11 +101,12 @@
               score_type,
               score_status,
               score_source,
+              outer_business_code,
               is_deleted,
               gmt_create,
               gmt_modify
         from integral_account_detail
-         where opration_type = #{outerBusinessCode,jdbcType=VARCHAR}
+         where outer_business_code = #{outerBusinessCode,jdbcType=VARCHAR}
     </select>
 
 

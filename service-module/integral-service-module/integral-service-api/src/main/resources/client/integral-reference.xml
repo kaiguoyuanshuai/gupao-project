@@ -14,4 +14,7 @@
     <dubbo:reference id="integralAccountService"
                      interface="com.gupao.edu.integral.service.IntegralAccountService"/>
 
+    <dubbo:reference id="integralAccountBusinessService"
+                     interface="com.gupao.edu.integral.service.IntegralAccountBusinessService"/>
+
 </beans>

@@ -70,6 +70,7 @@ public class IntegralAccountBusinessServiceImpl implements IntegralAccountBusine
         try {
             boolean res = lock.tryLock(20, 10, TimeUnit.SECONDS);
             while (!res && tryLockTimes <= MAX_TRYLOCK_TIMES) {
+                LOGGER.warn(scoreOperationRequest.getOuterBusinessCode()+"重新获取锁信息!!!!!!!!!!!!");
                 //再次获取锁信息
                 res = lock.tryLock(20, 10, TimeUnit.SECONDS);
                 tryLockTimes++;
@@ -98,6 +99,7 @@ public class IntegralAccountBusinessServiceImpl implements IntegralAccountBusine
                     return scoreOperationResponse.fail();
                 }
 
+                integralAccountRequest.setId(integralAccount.getId());
                 BaseResponse baseResponse = integralAccountService.updateINtegralAccountInfo(integralAccountRequest);
 
                 if (baseResponse != null && baseResponse.isSuccess()) {
@@ -105,7 +107,9 @@ public class IntegralAccountBusinessServiceImpl implements IntegralAccountBusine
                     integralAccountDetailBean.setUserId(Integer.valueOf(scoreOperationRequest.getUserId()));
                     integralAccountDetailBean.setAvailableScore(integralAccountRequest.getAvailableScoreBalance());
                     integralAccountDetailBean.setOprationScore(String.valueOf(scoreOperationRequest.getScore()));
+                    integralAccountDetailBean.setOuterBusinessCode(scoreOperationRequest.getOuterBusinessCode());
                     integralAccountDetailBean.setIntegralAccountId(integralAccount.getId());
+                    //integralAccountDetailBean.set
                     integralAccountDetailMapper.insert(integralAccountDetailBean);
                 }
             } else {

@@ -46,6 +46,9 @@ public class IntegralAccountDetail {
      */
     private String availableScore;
 
+
+    private String outerBusinessCode;
+
     /**
      * <pre>
      * 操作类型
@@ -395,5 +398,13 @@ public class IntegralAccountDetail {
      */
     public void setGmtModify(String gmtModify) {
         this.gmtModify = gmtModify == null ? null : gmtModify.trim();
+    }
+
+    public String getOuterBusinessCode() {
+        return outerBusinessCode;
+    }
+
+    public void setOuterBusinessCode(String outerBusinessCode) {
+        this.outerBusinessCode = outerBusinessCode;
     }
 }

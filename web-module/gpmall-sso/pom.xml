@@ -31,13 +31,19 @@
             <artifactId>user-service-api</artifactId>
             <version>1.0.1-SNAPSHOT</version>
         </dependency>
-
-<!--
         <dependency>
             <groupId>com.gupao.edu</groupId>
-            <artifactId>gupao-kafka-producer-dependency</artifactId>
+            <artifactId>integral-service-api</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
--->
+
+        <!--
+                <dependency>
+                    <groupId>com.gupao.edu</groupId>
+                    <artifactId>gupao-kafka-producer-dependency</artifactId>
+                </dependency>
+        -->
 
 <!--        <dependency>
             <groupId>com.gupao.edu</groupId>

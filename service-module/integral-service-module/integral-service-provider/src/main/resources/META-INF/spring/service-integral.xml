@@ -7,4 +7,7 @@
     <dubbo:service interface="com.gupao.edu.integral.service.IntegralAccountService"
                    ref="integralAccountService" timeout="3000"/>
 
+    <dubbo:service interface="com.gupao.edu.integral.service.IntegralAccountBusinessService"
+                   ref="integralAccountBusinessService" timeout="3000" cluster="failfast "/>
+
 </beans>

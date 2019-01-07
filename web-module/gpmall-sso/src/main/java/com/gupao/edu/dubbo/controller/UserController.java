@@ -1,5 +1,7 @@
 package com.gupao.edu.dubbo.controller;
 
+import com.gupao.edu.integral.dto.ScoreOperationRequest;
+import com.gupao.edu.integral.service.IntegralAccountBusinessService;
 import com.gupao.edu.serviceext.common.dto.BaseResponse;
 import com.gupao.edu.user.dto.UserLoginRequest;
 import com.gupao.edu.user.dto.UserLoginResponse;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 
@@ -27,6 +30,9 @@ public class UserController extends BaseController {
 
     @Autowired
     private IUserRegistryService userRegistryService;
+
+    @Autowired
+    private IntegralAccountBusinessService integralAccountBusinessService;
 
     @Autowired
     private GpMallWebProperties gpMallWebProperties;
@@ -60,12 +66,23 @@ public class UserController extends BaseController {
     @Anoymous
     public ResponseData test(String time) {
         UserRequest userRequest = new UserRequest();
-        userRequest.setUsername("name"+UUID.randomUUID());
+        userRequest.setUsername("name" + UUID.randomUUID());
 
         BaseResponse registry = userRegistryService.registry(userRequest);
 
         return ResponseData.SUCCESS(registry);
     }
 
+
+    @RequestMapping("/de")
+    @Anoymous
+    public ResponseData de(String time) {
+        ScoreOperationRequest scoreOperationRequest = new ScoreOperationRequest();
+        scoreOperationRequest.setUserId("13957");
+        scoreOperationRequest.setScore(new BigDecimal(10));
+        scoreOperationRequest.setOuterBusinessCode(String.valueOf(UUID.randomUUID()));
+        BaseResponse baseResponse = integralAccountBusinessService.deductionScore(scoreOperationRequest);
+        return ResponseData.SUCCESS();
+    }
 
 }
