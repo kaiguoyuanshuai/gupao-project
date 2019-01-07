@@ -1,5 +1,6 @@
 # aiyouma
-120.25.149.179 mysql
+47.98.131.177 mysql
 120.25.149.179 redis
 120.25.149.179 kafka
 120.25.149.179 zookeeper
+120.25.149.179 rabbitmq
