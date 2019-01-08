@@ -109,11 +109,15 @@ public class IntegralAccountBusinessServiceImpl implements IntegralAccountBusine
                     integralAccountDetailBean.setOprationScore(String.valueOf(scoreOperationRequest.getScore()));
                     integralAccountDetailBean.setOuterBusinessCode(scoreOperationRequest.getOuterBusinessCode());
                     integralAccountDetailBean.setIntegralAccountId(integralAccount.getId());
+                    integralAccountDetailBean.setOprationType(scoreOperationRequest.getOprationType());
+                    integralAccountDetailBean.setScoreType(scoreOperationRequest.getBizType());
+                    //integralAccountDetailBean.setScoreStatus("");
                     //integralAccountDetailBean.set
                     integralAccountDetailMapper.insert(integralAccountDetailBean);
                 }
             } else {
                 //记录错误日志,允许手动触发操作
+                LOGGER.error("获取锁失败!,操作参数为:{}", GPJsonUtils.toJson(scoreOperationRequest));
             }
 
 
