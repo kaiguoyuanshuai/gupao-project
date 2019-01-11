@@ -18,6 +18,7 @@
         <module>authorize-service-module</module>
         <module>integral-service-module</module>
         <module>order-service-module</module>
+        <module>seckill-service-module</module>
     </modules>
 
 </project>
