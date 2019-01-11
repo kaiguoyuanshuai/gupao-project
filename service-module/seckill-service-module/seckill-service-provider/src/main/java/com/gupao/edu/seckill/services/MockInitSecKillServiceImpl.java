@@ -25,7 +25,6 @@ import java.util.concurrent.TimeUnit;
 @Service("mockInitSecKillService")
 public class MockInitSecKillServiceImpl extends BaseService implements MockInitSecKillService {
 
-
     @Autowired
     private SecKillActivityMapper secKillActivityMapper;
 
@@ -52,7 +51,7 @@ public class MockInitSecKillServiceImpl extends BaseService implements MockInitS
 
         LOGGER.info(">>>>>>>>>>>>>>>>初始化秒杀缓存开始>>>>>>>>>>>>>>>>");
         SecKillActivity cacheEntity = cacheTemplateService.findCache(SecKillConstant.SECKILL_CACHE_KEY + secKillActivity.getId(),
-                new Duration(new DateTime(secKillActivity.getSeckillEndTime()), new DateTime(secKillActivity.getSeckillStartTime())).getMillis(),
+                new Duration(new DateTime(secKillActivity.getSeckillStartTime()),new DateTime(secKillActivity.getSeckillEndTime())).getMillis(),
                 TimeUnit.MILLISECONDS, new TypeReference<SecKillActivity>() {
                 }, new CacheLoadable<SecKillActivity>() {
                     @Override

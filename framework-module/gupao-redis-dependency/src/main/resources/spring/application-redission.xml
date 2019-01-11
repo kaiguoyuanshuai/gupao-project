@@ -12,7 +12,7 @@
 ">
 
     <redisson:client>
-        <redisson:single-server address="redis://${redis.host}:${redis.port}" database="${redis.database}"  />
+        <redisson:single-server address="redis://${redis.host}:${redis.port}" password="${redis.password}" database="${redis.database}"  />
     </redisson:client>
 
 </beans>

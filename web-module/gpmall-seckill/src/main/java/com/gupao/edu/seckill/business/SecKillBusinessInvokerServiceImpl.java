@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
  * @auth zhengkk19738
  * @time 2019/1/11
  */
-@Service
+@Service("secKillBusinessInvokerService")
 public class SecKillBusinessInvokerServiceImpl extends BaseService implements SecKillBusinessInvokerService {
 
     @Autowired

@@ -1,6 +1,7 @@
 package com.gupao.edu.seckill.controller;
 
 import com.gupao.edu.seckill.business.SecKillBusinessInvokerService;
+import com.gupao.edu.seckill.dto.SeckillRequest;
 import com.gupao.edu.seckill.service.MockInitSecKillService;
 import com.gupao.edu.web.annotations.Anoymous;
 import com.gupao.edu.web.controller.BaseController;
@@ -48,7 +49,9 @@ public class SecKillController extends BaseController {
     @RequestMapping("/kill")
     @Anoymous
     public ResponseData kill(String seckillId) {
-
+        SeckillRequest seckillRequest = new SeckillRequest();
+        seckillRequest.setSeckillId(seckillId);
+        secKillBusinessInvokerService.seckill(seckillRequest);
         return ResponseData.SUCCESS();
     }
 

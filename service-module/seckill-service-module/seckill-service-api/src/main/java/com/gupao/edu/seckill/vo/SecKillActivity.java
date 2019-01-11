@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
-@Table(name = "seckill-activity")
+@Table(name = "seckill_activity")
 public class SecKillActivity {
     /**
      * <pre>
