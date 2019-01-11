@@ -23,7 +23,7 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://47.98.131.177:3306/test?useUnicode=true"
+                        connectionURL="jdbc:mysql://47.98.131.177:3306/seckill?useUnicode=true"
                         userId="root"
                         password="Zkk765696946@">
         </jdbcConnection>
@@ -32,20 +32,20 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.gupao.edu.integral.dal.entity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.gupao.edu.seckill.dal.entity" targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.gupao.edu.integral.dal.persistence"  targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="com.gupao.edu.seckill.dal.persistence"  targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.gupao.edu.integral.dal.persistence"  targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.gupao.edu.seckill.dal.persistence"  targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="integral_account_detail" domainObjectName="IntegralAccountDetail" >
+        <table tableName="seckill-activity" domainObjectName="SecKillActivity" >
             <property name="ignoreQualifiersAtRuntime" value="false"/>
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="ID" sqlStatement="MySql" identity="true" />

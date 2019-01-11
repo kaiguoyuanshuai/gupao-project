@@ -43,6 +43,9 @@ public class RegistryEventListener implements ApplicationListener<RegistryEvent>
             userRegistryMessage.setUserId(event.getUserId());
             userRegistryMessage.setUserName(event.getUserName());
             amqpTemplate.convertAndSend(MQ_REGISTRY_KEY, userRegistryMessage);
+
+            //TODO 这边还可能会出现 MQ消息宕机的问题，这边需要根据是否发送MQ消息成功与否记录日志 ，自动或者手动的去触发
+
         }
 
     }

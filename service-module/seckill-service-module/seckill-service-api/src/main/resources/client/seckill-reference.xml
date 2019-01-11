@@ -12,7 +12,6 @@
 
     <context:annotation-config/>
 
-    <dubbo:reference id="activityTurntableDrawService"
-                     interface="com.gupao.edu.activity.service.ActivityTurntableDrawService"/>
-
+    <dubbo:reference id="mockInitSecKillService" interface="com.gupao.edu.seckill.service.MockInitSecKillService"/>
+    <dubbo:reference id="seckillBusinessService" interface="com.gupao.edu.seckill.service.SeckillBusinessService"/>
 </beans>

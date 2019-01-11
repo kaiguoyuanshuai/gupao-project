@@ -24,8 +24,24 @@
 
     <dependencies>
         <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.gupao.edu</groupId>
             <artifactId>gupao-web-dependency</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gupao.edu</groupId>
+            <artifactId>gupao-redis-dependency</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gupao.edu</groupId>
+            <artifactId>gupao-rabbitmq-producer-dependecy</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>

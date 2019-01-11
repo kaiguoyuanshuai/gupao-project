@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+    <!--配置连接-->
+    <rabbit:connection-factory id="connectionFactory" host="${rabbitmq.host}" port="${rabbitmq.port}"
+                               username="${rabbitmq.username}" password="${rabbitmq.password}" virtual-host="/"
+                               requested-heartbeat="60"/>
+
+    <!--配置RabbitAdmin-->
+    <rabbit:admin connection-factory="connectionFactory"/>
+
+    <!--配置队列名-->
+    <rabbit:queue id="seckillrocessQueue" name="seckillrocessQueue" durable="true" auto-delete="false"/>
+
+    <!--配置topic类型exchange-->
+    <rabbit:direct-exchange name="seckillProcessExchange">
+        <rabbit:bindings>
+            <rabbit:binding queue="seckillrocessQueue" key="seckill.kill.event"/>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+    <!--配置监听-->
+    <rabbit:listener-container connection-factory="connectionFactory" acknowledge="manual">
+        <rabbit:listener ref="secKillInitListener" queues="seckillrocessQueue"/>
+    </rabbit:listener-container>
+
+
+</beans>
