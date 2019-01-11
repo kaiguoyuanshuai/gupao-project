@@ -3,10 +3,11 @@ package com.gupao.edu.seckill.vo;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "seckill_activity")
-public class SecKillActivity {
+public class SecKillActivity implements Serializable {
     /**
      * <pre>
      * 

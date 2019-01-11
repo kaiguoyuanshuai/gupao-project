@@ -23,7 +23,6 @@
 		<property name="transactionManager" ref="transactionManager"/>
 	</bean>
 
-<!--
 
 	<tx:advice id="transactionTxAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
@@ -49,6 +48,5 @@
 		<aop:pointcut id="pc" expression="execution(public * com.gupao.edu.*.service.*.*(..))" />
 		<aop:advisor pointcut-ref="pc" advice-ref="transactionTxAdvice" />
 	</aop:config>
--->
 
 </beans>

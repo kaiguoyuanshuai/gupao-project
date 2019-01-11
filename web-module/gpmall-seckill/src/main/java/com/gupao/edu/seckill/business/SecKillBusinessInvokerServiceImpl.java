@@ -58,6 +58,7 @@ public class SecKillBusinessInvokerServiceImpl extends BaseService implements Se
 
         RLongAdder atomicLongNew = redisson.getLongAdder(SecKillConstant.SECKILL_PRE_COUNT + seckillRequest.getSeckillId());
 
+        LOGGER.info("剩余资格:{}",atomicLongNew.sum());
         if (atomicLongNew.sum() <= 0) {
             //TODO 通知界面被抢购结束了
             LOGGER.error("秒杀结束，没有抢到秒杀队列资格!");
