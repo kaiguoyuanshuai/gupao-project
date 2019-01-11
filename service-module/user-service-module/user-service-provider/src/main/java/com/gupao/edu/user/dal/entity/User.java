@@ -1,27 +1,49 @@
 package com.gupao.edu.user.dal.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * 腾讯课堂搜索 咕泡学院
  * 加群获取视频：608583947
  * 风骚的Michael 老师
  */
+
+@Table(name = "user")
 public class User {
-    private int id;
+    @Id
+    private Integer id;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "realname")
     private String realname;
+
+    @Column(name = "avatar")
     private String avatar;
 
+    @Column(name = "mobile")
     private String mobile;
+
+    @Column(name = "sex")
     private String sex;
+
+    @Column(name = "status")
     private int status;
+
+    @Column(name = "createTime")
     private String createTime;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

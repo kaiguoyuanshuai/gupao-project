@@ -1,50 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:context="http://www.springframework.org/schema/context"
-	   xmlns:p="http://www.springframework.org/schema/p"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
 	   http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.3.xsd"
-	   default-autowire="byName">
+       >
 
-	<context:property-placeholder location="classpath:application.properties" />
+    <context:property-placeholder location="classpath:application.properties"/>
 
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"
-		  p:url="${datasource.user.url}"
-		  p:username="${datasource.user.username}"
-		  p:password="${datasource.user.password}"
-		  p:initialSize="${datasource.user.initialSize}"
-		  p:minIdle="${datasource.user.minIdle}"
-		  p:maxActive="${datasource.user.maxActive}"
-		  p:maxWait="${datasource.user.maxWait}"
-		  p:timeBetweenEvictionRunsMillis="${datasource.user.timeBetweenEvictionRunsMillis}"
-		  p:minEvictableIdleTimeMillis="${datasource.user.minEvictableIdleTimeMillis}"
-		  p:validationQuery="${datasource.user.validationQuery}"
-		  p:testWhileIdle="${datasource.user.testWhileIdle}"
-		  p:testOnBorrow="${datasource.user.testOnBorrow}"
-		  p:testOnReturn="${datasource.user.testOnReturn}"
-		  p:poolPreparedStatements="${datasource.user.poolPreparedStatements}"
-		  p:maxPoolPreparedStatementPerConnectionSize="${datasource.user.maxPoolPreparedStatementPerConnectionSize}"
-		  p:connectionProperties="spring.decrypt=false;spring.decrypt.key=${datasource.user.publickey}"
-		  p:filters="${datasource.user.filters}">
-	</bean>
+   <!-- <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"
+          p:url="${datasource.user.url}"
+          p:username="${datasource.user.username}"
+          p:password="${datasource.user.password}"
+          p:initialSize="1"
+          p:minIdle="${datasource.user.minIdle}"
+          p:maxActive="${datasource.user.maxActive}"
+          p:maxWait="${datasource.user.maxWait}"
+          p:timeBetweenEvictionRunsMillis="${datasource.user.timeBetweenEvictionRunsMillis}"
+          p:minEvictableIdleTimeMillis="${datasource.user.minEvictableIdleTimeMillis}"
+          p:validationQuery="${datasource.user.validationQuery}"
+          p:testWhileIdle="${datasource.user.testWhileIdle}"
+          p:testOnBorrow="${datasource.user.testOnBorrow}"
+          p:testOnReturn="${datasource.user.testOnReturn}"
+          p:poolPreparedStatements="${datasource.user.poolPreparedStatements}"
+          p:maxPoolPreparedStatementPerConnectionSize="${datasource.user.maxPoolPreparedStatementPerConnectionSize}"
+          p:connectionProperties="spring.decrypt=false;spring.decrypt.key=${datasource.user.publickey}"
+          p:filters="${datasource.user.filters}">
+    </bean>-->
 
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="typeAliasesPackage"
-				  value="com.gupao.edu.*.dal.entity" />
-		<property name="mapperLocations" value="classpath*:mapper/*Mapper.xml" />
-	</bean>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url" value="${datasource.user.url}"/>
+        <property name="username" value="${datasource.user.username}"/>
+        <property name="password" value="${datasource.user.password}"/>
+        <property name="initialSize" value="${datasource.user.initialSize}"/>
+        <property name="minIdle" value="${datasource.user.minIdle}"/>
+        <property name="maxActive" value="${datasource.user.maxActive}"/>
+        <property name="maxWait" value="${datasource.user.maxWait}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${datasource.user.timeBetweenEvictionRunsMillis}"/>
+        <property name="minEvictableIdleTimeMillis" value="${datasource.user.minEvictableIdleTimeMillis}"/>
+        <property name="validationQuery" value="${datasource.user.validationQuery}"/>
+        <property name="testWhileIdle" value="${datasource.user.testWhileIdle}"/>
+        <property name="testOnBorrow" value="${datasource.user.testOnBorrow}"/>
+        <property name="testOnReturn" value="${datasource.user.testOnReturn}"/>
+        <property name="poolPreparedStatements" value="${datasource.user.poolPreparedStatements}"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="${datasource.user.maxPoolPreparedStatementPerConnectionSize}"/>
+        <property name="connectionProperties" value="spring.decrypt=false;spring.decrypt.key=${datasource.user.publickey}"/>
+        <property name="filters" value="${datasource.user.filters}"/>
+    </bean>
 
-	<bean name="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage"
-				  value="com.gupao.edu.*.dal.persistence" />
-		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-	</bean>
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="typeAliasesPackage"
+                  value="com.gupao.edu.*.dal.entity"/>
+        <property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>
+        <property name="configuration" ref="mybatisConfig"/>
+    </bean>
 
-	<context:component-scan base-package="com.gupao.edu.*" />
+    <!--使用 Configuration 方式进行配置-->
+    <bean id="mybatisConfig" class="tk.mybatis.mapper.session.Configuration">
+        <!-- 配置通用 Mapper，有三种属性注入方式 -->
+        <property name="mapperProperties">
+            <value>
+                mappers=com.gupao.edu.base.mapper.CommonMapper
+                not-empty=false
+                identity=MYSQL
+            </value>
+        </property>
+    </bean>
 
-	<import resource="classpath*:spring/application-*.xml" />
+    <bean name="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage"
+                  value="com.gupao.edu.*.dal.persistence"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <context:component-scan base-package="com.gupao.edu.*"/>
+
+    <import resource="classpath*:spring/application-*.xml"/>
 </beans>

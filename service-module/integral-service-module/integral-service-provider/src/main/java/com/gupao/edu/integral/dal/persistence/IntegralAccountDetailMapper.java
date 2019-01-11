@@ -1,16 +1,19 @@
 package com.gupao.edu.integral.dal.persistence;
 
 
+import com.gupao.edu.base.mapper.CommonMapper;
 import com.gupao.edu.integral.dal.entity.IntegralAccountDetail;
 
 import java.util.List;
 
-public interface IntegralAccountDetailMapper {
+public interface IntegralAccountDetailMapper extends CommonMapper<IntegralAccountDetail> {
+/*
     int deleteByPrimaryKey(Integer id);
+*/
 
     int insert(IntegralAccountDetail record);
 
-    IntegralAccountDetail selectByPrimaryKey(Integer id);
+ /*   IntegralAccountDetail selectByPrimaryKey(Integer id);*/
 
     List<IntegralAccountDetail> selectAll();
 

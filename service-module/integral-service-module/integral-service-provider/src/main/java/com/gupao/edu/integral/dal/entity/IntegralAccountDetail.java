@@ -1,31 +1,37 @@
 package com.gupao.edu.integral.dal.entity;
 
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name = "integral_account_detail")
 public class IntegralAccountDetail {
     /**
      * <pre>
-     * 
+     *
      * 表字段： integral_account_detail.id
      * </pre>
-     * 
      */
+    @Id
     private Integer id;
 
     /**
      * <pre>
-     * 
+     *
      * 表字段： integral_account_detail.user_id
      * </pre>
-     * 
      */
+    @Column(name = "user_id")
     private Integer userId;
 
     /**
      * <pre>
-     * 
+     *
      * 表字段： integral_account_detail.integral_account_id
      * </pre>
-     * 
      */
+    @Column(name = "integral_account_id")
     private Integer integralAccountId;
 
     /**
@@ -33,8 +39,8 @@ public class IntegralAccountDetail {
      * 操作分值
      * 表字段： integral_account_detail.opration_score
      * </pre>
-     * 
      */
+    @Column(name = "opration_score")
     private String oprationScore;
 
     /**
@@ -42,11 +48,12 @@ public class IntegralAccountDetail {
      * 可用积分
      * 表字段： integral_account_detail.available_score
      * </pre>
-     * 
      */
+    @Column(name = "available_score")
     private String availableScore;
 
 
+    @Column(name = "outer_business_code")
     private String outerBusinessCode;
 
     /**
@@ -54,8 +61,8 @@ public class IntegralAccountDetail {
      * 操作类型
      * 表字段： integral_account_detail.opration_type
      * </pre>
-     * 
      */
+    @Column(name = "opration_type")
     private String oprationType;
 
     /**
@@ -63,8 +70,8 @@ public class IntegralAccountDetail {
      * 积分业务类型
      * 表字段： integral_account_detail.score_type
      * </pre>
-     * 
      */
+    @Column(name = "score_type")
     private String scoreType;
 
     /**
@@ -72,8 +79,8 @@ public class IntegralAccountDetail {
      * 积分状态
      * 表字段： integral_account_detail.score_status
      * </pre>
-     * 
      */
+    @Column(name = "score_status")
     private String scoreStatus;
 
     /**
@@ -81,35 +88,35 @@ public class IntegralAccountDetail {
      * 积分来源
      * 表字段： integral_account_detail.score_source
      * </pre>
-     * 
      */
+    @Column(name = "score_source")
     private String scoreSource;
 
     /**
      * <pre>
-     * 
+     *
      * 表字段： integral_account_detail.is_deleted
      * </pre>
-     * 
      */
+    @Column(name = "is_deleted")
     private String isDeleted;
 
     /**
      * <pre>
-     * 
+     *
      * 表字段： integral_account_detail.gmt_create
      * </pre>
-     * 
      */
+    @Column(name = "gmt_create")
     private String gmtCreate;
 
     /**
      * <pre>
-     * 
+     *
      * 表字段： integral_account_detail.gmt_modify
      * </pre>
-     * 
      */
+    @Column(name = "gmt_modify")
     private String gmtModify;
 
     /**
@@ -117,7 +124,6 @@ public class IntegralAccountDetail {
      * This method returns the value of the database column integral_account_detail.id
      *
      * @return the value of integral_account_detail.id
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public Integer getId() {
@@ -129,7 +135,6 @@ public class IntegralAccountDetail {
      * This method sets the value of the database column integral_account_detail.id
      *
      * @param id the value for integral_account_detail.id
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public void setId(Integer id) {
@@ -141,7 +146,6 @@ public class IntegralAccountDetail {
      * This method returns the value of the database column integral_account_detail.user_id
      *
      * @return the value of integral_account_detail.user_id
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public Integer getUserId() {
@@ -153,7 +157,6 @@ public class IntegralAccountDetail {
      * This method sets the value of the database column integral_account_detail.user_id
      *
      * @param userId the value for integral_account_detail.user_id
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public void setUserId(Integer userId) {
@@ -165,7 +168,6 @@ public class IntegralAccountDetail {
      * This method returns the value of the database column integral_account_detail.integral_account_id
      *
      * @return the value of integral_account_detail.integral_account_id
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public Integer getIntegralAccountId() {
@@ -177,7 +179,6 @@ public class IntegralAccountDetail {
      * This method sets the value of the database column integral_account_detail.integral_account_id
      *
      * @param integralAccountId the value for integral_account_detail.integral_account_id
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public void setIntegralAccountId(Integer integralAccountId) {
@@ -189,7 +190,6 @@ public class IntegralAccountDetail {
      * This method returns the value of the database column integral_account_detail.opration_score
      *
      * @return the value of integral_account_detail.opration_score
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public String getOprationScore() {
@@ -201,7 +201,6 @@ public class IntegralAccountDetail {
      * This method sets the value of the database column integral_account_detail.opration_score
      *
      * @param oprationScore the value for integral_account_detail.opration_score
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public void setOprationScore(String oprationScore) {
@@ -213,7 +212,6 @@ public class IntegralAccountDetail {
      * This method returns the value of the database column integral_account_detail.available_score
      *
      * @return the value of integral_account_detail.available_score
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public String getAvailableScore() {
@@ -225,7 +223,6 @@ public class IntegralAccountDetail {
      * This method sets the value of the database column integral_account_detail.available_score
      *
      * @param availableScore the value for integral_account_detail.available_score
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public void setAvailableScore(String availableScore) {
@@ -237,7 +234,6 @@ public class IntegralAccountDetail {
      * This method returns the value of the database column integral_account_detail.opration_type
      *
      * @return the value of integral_account_detail.opration_type
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public String getOprationType() {
@@ -249,7 +245,6 @@ public class IntegralAccountDetail {
      * This method sets the value of the database column integral_account_detail.opration_type
      *
      * @param oprationType the value for integral_account_detail.opration_type
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public void setOprationType(String oprationType) {
@@ -261,7 +256,6 @@ public class IntegralAccountDetail {
      * This method returns the value of the database column integral_account_detail.score_type
      *
      * @return the value of integral_account_detail.score_type
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public String getScoreType() {
@@ -273,7 +267,6 @@ public class IntegralAccountDetail {
      * This method sets the value of the database column integral_account_detail.score_type
      *
      * @param scoreType the value for integral_account_detail.score_type
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public void setScoreType(String scoreType) {
@@ -285,7 +278,6 @@ public class IntegralAccountDetail {
      * This method returns the value of the database column integral_account_detail.score_status
      *
      * @return the value of integral_account_detail.score_status
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public String getScoreStatus() {
@@ -297,7 +289,6 @@ public class IntegralAccountDetail {
      * This method sets the value of the database column integral_account_detail.score_status
      *
      * @param scoreStatus the value for integral_account_detail.score_status
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public void setScoreStatus(String scoreStatus) {
@@ -309,7 +300,6 @@ public class IntegralAccountDetail {
      * This method returns the value of the database column integral_account_detail.score_source
      *
      * @return the value of integral_account_detail.score_source
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public String getScoreSource() {
@@ -321,7 +311,6 @@ public class IntegralAccountDetail {
      * This method sets the value of the database column integral_account_detail.score_source
      *
      * @param scoreSource the value for integral_account_detail.score_source
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public void setScoreSource(String scoreSource) {
@@ -333,7 +322,6 @@ public class IntegralAccountDetail {
      * This method returns the value of the database column integral_account_detail.is_deleted
      *
      * @return the value of integral_account_detail.is_deleted
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public String getIsDeleted() {
@@ -345,7 +333,6 @@ public class IntegralAccountDetail {
      * This method sets the value of the database column integral_account_detail.is_deleted
      *
      * @param isDeleted the value for integral_account_detail.is_deleted
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public void setIsDeleted(String isDeleted) {
@@ -357,7 +344,6 @@ public class IntegralAccountDetail {
      * This method returns the value of the database column integral_account_detail.gmt_create
      *
      * @return the value of integral_account_detail.gmt_create
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public String getGmtCreate() {
@@ -369,7 +355,6 @@ public class IntegralAccountDetail {
      * This method sets the value of the database column integral_account_detail.gmt_create
      *
      * @param gmtCreate the value for integral_account_detail.gmt_create
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public void setGmtCreate(String gmtCreate) {
@@ -381,7 +366,6 @@ public class IntegralAccountDetail {
      * This method returns the value of the database column integral_account_detail.gmt_modify
      *
      * @return the value of integral_account_detail.gmt_modify
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public String getGmtModify() {
@@ -393,7 +377,6 @@ public class IntegralAccountDetail {
      * This method sets the value of the database column integral_account_detail.gmt_modify
      *
      * @param gmtModify the value for integral_account_detail.gmt_modify
-     *
      * @mbg.generated Thu Jan 03 17:25:17 GMT+08:00 2019
      */
     public void setGmtModify(String gmtModify) {

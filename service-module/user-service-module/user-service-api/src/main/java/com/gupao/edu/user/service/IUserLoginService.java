@@ -17,5 +17,4 @@ public interface IUserLoginService {
     UserLoginResponse login(UserLoginRequest userLoginRequest);
 
 
-    void insert() ;
 }

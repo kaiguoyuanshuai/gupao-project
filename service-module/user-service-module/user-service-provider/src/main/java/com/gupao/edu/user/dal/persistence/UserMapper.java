@@ -1,6 +1,7 @@
 package com.gupao.edu.user.dal.persistence;
 
 
+import com.gupao.edu.base.mapper.CommonMapper;
 import com.gupao.edu.user.dal.entity.User;
 
 /**
@@ -8,14 +9,12 @@ import com.gupao.edu.user.dal.entity.User;
  * 加群获取视频：608583947
  * 风骚的Michael 老师
  */
-public interface UserMapper {
+public interface UserMapper extends CommonMapper<User> {
 
     /**
      * @return
      */
     User getUserByUserName(String userName);
 
-
-    void insertSelective(User user);
 
 }

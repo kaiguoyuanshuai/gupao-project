@@ -1,13 +1,18 @@
 package com.gupao.edu.integral.vo;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name = "integral_account")
 public class IntegralAccount {
     /**
      * <pre>
-     * 
+     *
      * 表字段： integral_account.id
      * </pre>
-     * 
      */
+    @Id
     private Integer id;
 
     /**
@@ -15,17 +20,17 @@ public class IntegralAccount {
      * 用户编号
      * 表字段： integral_account.user_id
      * </pre>
-     * 
      */
+    @Column(name = "user_id")
     private Integer userId;
 
     /**
      * <pre>
-     * 
+     *
      * 表字段： integral_account.user_name
      * </pre>
-     * 
      */
+    @Column(name = "user_name")
     private String userName;
 
     /**
@@ -33,8 +38,8 @@ public class IntegralAccount {
      * 积分总额
      * 表字段： integral_account.score_balance
      * </pre>
-     * 
      */
+    @Column(name = "score_balance")
     private String scoreBalance;
 
     /**
@@ -42,8 +47,8 @@ public class IntegralAccount {
      * 可用积分
      * 表字段： integral_account.available_score_balance
      * </pre>
-     * 
      */
+    @Column(name = "available_score_balance")
     private String availableScoreBalance;
 
     /**
@@ -51,7 +56,6 @@ public class IntegralAccount {
      * This method returns the value of the database column integral_account.id
      *
      * @return the value of integral_account.id
-     *
      * @mbg.generated Thu Jan 03 17:21:37 GMT+08:00 2019
      */
     public Integer getId() {
@@ -63,7 +67,6 @@ public class IntegralAccount {
      * This method sets the value of the database column integral_account.id
      *
      * @param id the value for integral_account.id
-     *
      * @mbg.generated Thu Jan 03 17:21:37 GMT+08:00 2019
      */
     public void setId(Integer id) {
@@ -75,7 +78,6 @@ public class IntegralAccount {
      * This method returns the value of the database column integral_account.user_id
      *
      * @return the value of integral_account.user_id
-     *
      * @mbg.generated Thu Jan 03 17:21:37 GMT+08:00 2019
      */
     public Integer getUserId() {
@@ -87,7 +89,6 @@ public class IntegralAccount {
      * This method sets the value of the database column integral_account.user_id
      *
      * @param userId the value for integral_account.user_id
-     *
      * @mbg.generated Thu Jan 03 17:21:37 GMT+08:00 2019
      */
     public void setUserId(Integer userId) {
@@ -99,7 +100,6 @@ public class IntegralAccount {
      * This method returns the value of the database column integral_account.user_name
      *
      * @return the value of integral_account.user_name
-     *
      * @mbg.generated Thu Jan 03 17:21:37 GMT+08:00 2019
      */
     public String getUserName() {
@@ -111,7 +111,6 @@ public class IntegralAccount {
      * This method sets the value of the database column integral_account.user_name
      *
      * @param userName the value for integral_account.user_name
-     *
      * @mbg.generated Thu Jan 03 17:21:37 GMT+08:00 2019
      */
     public void setUserName(String userName) {
@@ -123,7 +122,6 @@ public class IntegralAccount {
      * This method returns the value of the database column integral_account.score_balance
      *
      * @return the value of integral_account.score_balance
-     *
      * @mbg.generated Thu Jan 03 17:21:37 GMT+08:00 2019
      */
     public String getScoreBalance() {
@@ -135,7 +133,6 @@ public class IntegralAccount {
      * This method sets the value of the database column integral_account.score_balance
      *
      * @param scoreBalance the value for integral_account.score_balance
-     *
      * @mbg.generated Thu Jan 03 17:21:37 GMT+08:00 2019
      */
     public void setScoreBalance(String scoreBalance) {
@@ -147,7 +144,6 @@ public class IntegralAccount {
      * This method returns the value of the database column integral_account.available_score_balance
      *
      * @return the value of integral_account.available_score_balance
-     *
      * @mbg.generated Thu Jan 03 17:21:37 GMT+08:00 2019
      */
     public String getAvailableScoreBalance() {
@@ -159,7 +155,6 @@ public class IntegralAccount {
      * This method sets the value of the database column integral_account.available_score_balance
      *
      * @param availableScoreBalance the value for integral_account.available_score_balance
-     *
      * @mbg.generated Thu Jan 03 17:21:37 GMT+08:00 2019
      */
     public void setAvailableScoreBalance(String availableScoreBalance) {

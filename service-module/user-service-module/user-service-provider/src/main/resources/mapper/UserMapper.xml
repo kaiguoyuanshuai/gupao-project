@@ -14,7 +14,7 @@
         <include refid="Base_Column_List"/>
         from user where username=#{username}
     </select>
-
+<!--
     <insert id="insertSelective" parameterType="com.gupao.edu.user.dal.entity.User"
             useGeneratedKeys="true" keyProperty="id">
         insert into user
@@ -70,7 +70,7 @@
                 #{createTime,jdbcType=TIMESTAMP},
             </if>
         </trim>
-    </insert>
+    </insert>-->
 
 
 </mapper>

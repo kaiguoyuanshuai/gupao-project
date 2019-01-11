@@ -16,8 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.HashMap;
@@ -43,9 +41,6 @@ public class UserLoginServiceImpl implements IUserLoginService {
 
     @Autowired
     private TestServiceImpl testServiceImpl ;
-
-    @Autowired
-    private TestServiceImpl2 testServiceImpl2 ;
 
     @Override
     public UserLoginResponse login(UserLoginRequest request) {
@@ -76,19 +71,6 @@ public class UserLoginServiceImpl implements IUserLoginService {
         return response;
     }
 
-    @Override
-    public void insert() {
-        transactionTemplate.execute(new TransactionCallback<Object>() {
-            @Override
-            public Object doInTransaction(TransactionStatus status) {
-                testServiceImpl2.insert() ;
-                testServiceImpl.insert() ;
-                return null;
-            }
-        });
-
-
-    }
 
     private void beforeValidate(UserLoginRequest request) {
         if (request == null) {
