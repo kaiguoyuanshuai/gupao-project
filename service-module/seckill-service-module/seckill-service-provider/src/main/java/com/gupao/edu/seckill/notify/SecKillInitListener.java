@@ -22,7 +22,7 @@ public class SecKillInitListener implements ChannelAwareMessageListener {
     @Override
     public void onMessage(Message message, Channel channel) throws Exception {
         LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>消费秒杀消息>>>>>>>>>>>>>>>>>>>>>>>>>");
-        LOGGER.info("消费秒杀参数:{}", message.getBody());
+        LOGGER.info("消费秒杀参数:{}", new String(message.getBody()));
 
 
         try {

@@ -1,14 +1,20 @@
 package com.gupao.edu.seckill.controller;
 
+import com.google.common.collect.Lists;
 import com.gupao.edu.seckill.business.SecKillBusinessInvokerService;
+import com.gupao.edu.seckill.constant.SecKillConstant;
 import com.gupao.edu.seckill.dto.SeckillRequest;
 import com.gupao.edu.seckill.service.MockInitSecKillService;
 import com.gupao.edu.web.annotations.Anoymous;
 import com.gupao.edu.web.controller.BaseController;
 import com.gupao.edu.web.support.ResponseData;
+import org.redisson.api.RScript;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.ExecutionException;
 
 /*
  * 描述: 秒杀测试类
@@ -24,6 +30,10 @@ public class SecKillController extends BaseController {
 
     @Autowired
     private SecKillBusinessInvokerService secKillBusinessInvokerService;
+
+    @Autowired
+    private RedissonClient redisson;
+
 
     /**
      * 初始化数据
@@ -64,6 +74,30 @@ public class SecKillController extends BaseController {
     @RequestMapping("/order")
     @Anoymous
     public ResponseData order(String seckillId) {
+
+        return ResponseData.SUCCESS();
+    }
+
+
+    /**
+     * 查看秒杀订单
+     *
+     * @param seckillId
+     * @return
+     */
+    @RequestMapping("/lua")
+    @Anoymous
+    public ResponseData lua(String seckillId) throws ExecutionException, InterruptedException {
+
+        RScript s = redisson.getScript();
+
+      //  String res = s.scriptLoad(SecKillConstant.INIT_SECKILL_GOODS__COUNT_SCRIPT);
+
+        // 再通过SHA值调用脚本
+        Object eval = redisson.getScript().eval(RScript.Mode.READ_WRITE,
+                SecKillConstant.INIT_SECKILL_GOODS__COUNT_SCRIPT,
+                RScript.ReturnType.INTEGER, Lists.newArrayList(seckillId), "1", "1000");
+        System.out.println(eval);
 
         return ResponseData.SUCCESS();
     }

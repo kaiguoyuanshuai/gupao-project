@@ -12,6 +12,6 @@
 
     <context:annotation-config/>
 
-    <dubbo:reference id="mockInitSecKillService" interface="com.gupao.edu.seckill.service.MockInitSecKillService"/>
-    <dubbo:reference id="seckillBusinessService" interface="com.gupao.edu.seckill.service.SeckillBusinessService"/>
+    <dubbo:reference id="mockInitSecKillService" interface="com.gupao.edu.seckill.service.MockInitSecKillService" check="false"/>
+    <dubbo:reference id="seckillBusinessService" interface="com.gupao.edu.seckill.service.SeckillBusinessService" check="false"/>
 </beans>
