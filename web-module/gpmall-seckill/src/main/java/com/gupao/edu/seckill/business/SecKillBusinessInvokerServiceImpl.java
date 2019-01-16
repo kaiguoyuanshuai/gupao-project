@@ -40,11 +40,6 @@ public class SecKillBusinessInvokerServiceImpl extends BaseService implements Se
     private AmqpTemplate amqpTemplate;
 
     /**
-     * //TODO 缺少一个redis lua 脚本 有以下功能
-     * <p>
-     * 1、初始化值 设置值为 N
-     * 2、递减1，结果不小于0 则返回1 否则返回0
-     * 3、可以中途设置一个值
      *
      * @param seckillRequest
      * @return
