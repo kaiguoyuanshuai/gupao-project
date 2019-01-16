@@ -1,6 +1,7 @@
 package com.gupao.edu.seckill.services;
 
 import com.alibaba.fastjson.TypeReference;
+import com.google.common.collect.Lists;
 import com.gupao.edu.base.service.BaseService;
 import com.gupao.edu.cache.interfaces.CacheLoadable;
 import com.gupao.edu.cache.template.CacheTemplateService;
@@ -11,6 +12,7 @@ import com.gupao.edu.seckill.vo.SecKillActivity;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.redisson.api.RLongAdder;
+import org.redisson.api.RScript;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,7 +53,7 @@ public class MockInitSecKillServiceImpl extends BaseService implements MockInitS
 
         LOGGER.info(">>>>>>>>>>>>>>>>初始化秒杀缓存开始>>>>>>>>>>>>>>>>");
         SecKillActivity cacheEntity = cacheTemplateService.findCache(SecKillConstant.SECKILL_CACHE_KEY + secKillActivity.getId(),
-                new Duration(new DateTime(secKillActivity.getSeckillStartTime()),new DateTime(secKillActivity.getSeckillEndTime())).getMillis(),
+                new Duration(new DateTime(secKillActivity.getSeckillStartTime()), new DateTime(secKillActivity.getSeckillEndTime())).getMillis(),
                 TimeUnit.MILLISECONDS, new TypeReference<SecKillActivity>() {
                 }, new CacheLoadable<SecKillActivity>() {
                     @Override
@@ -60,9 +62,16 @@ public class MockInitSecKillServiceImpl extends BaseService implements MockInitS
                     }
                 });
         LOGGER.info(">>>>>>>>>>>>>>>>初始化允许请求缓存开始>>>>>>>>>>>>>>>>");
-        RLongAdder atomicLongNew = redisson.getLongAdder(SecKillConstant.SECKILL_PRE_COUNT + seckillId);
-        atomicLongNew.add(SecKillConstant.CALL_COUNT * secKillActivity.getSeckillGoodsNum());
-        LOGGER.info("现有:" + String.valueOf(atomicLongNew.sum()));
+
+
+        RScript s = redisson.getScript();
+        String res = s.scriptLoad(SecKillConstant.INIT_SECKILL_GOODS__COUNT_SCRIPT);
+
+        Integer eval = Integer.valueOf(redisson.getScript().evalSha(RScript.Mode.READ_WRITE,
+                res,
+                RScript.ReturnType.INTEGER, Lists.newArrayList(seckillId), new Duration(new DateTime(secKillActivity.getSeckillStartTime()),
+                        new DateTime(secKillActivity.getSeckillEndTime())).getMillis(), SecKillConstant.CALL_COUNT * secKillActivity.getSeckillGoodsNum()));
+        LOGGER.info("现有:" + String.valueOf(eval));
 
         LOGGER.info(">>>>>>>>>>>>>>>>初始化真实库存请求缓存开始>>>>>>>>>>>>>>>>");
 
