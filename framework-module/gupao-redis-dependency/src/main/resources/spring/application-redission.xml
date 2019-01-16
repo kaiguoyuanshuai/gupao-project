@@ -11,10 +11,10 @@
        http://redisson.org/schema/redisson/redisson.xsd
 ">
 
-    <redisson:client codec-ref="kryoCodec">
+    <redisson:client codec-ref="stringCodec">
         <redisson:single-server   address="redis://${redis.host}:${redis.port}" password="${redis.password}" database="${redis.database}"  />
     </redisson:client>
 
 
-    <bean id="kryoCodec" class="org.redisson.codec.KryoCodec"/>
+    <bean id="stringCodec" class="org.redisson.client.codec.StringCodec"/>
 </beans>

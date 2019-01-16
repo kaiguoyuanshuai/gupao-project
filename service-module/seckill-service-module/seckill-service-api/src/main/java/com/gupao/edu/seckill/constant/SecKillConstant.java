@@ -33,61 +33,48 @@ public class SecKillConstant {
 
     //===========================LUA==========================
 
-    //初始化秒杀预留的数据
-    public static final String INIT_SECKILL_GOODS__COUNT_SCRIPT = "local key = KEYS[1];" +
-            //"local expire = tonumber(ARGV[1]);" +
-            "local expire = ARGV[1];" +
-            //"local number = tonumber(ARGV[2]);" +
-            "local number = ARGV[2];" +
-            "return number;" ;
-            //"local count = tonumber(redis.call('GET',key));" +
-           // "local count = redis.call('GET',key);" +
-           // "if count == nil then " +
-           // "redis.call('SETEX',key,expire,number);" +
-           // "return true;" +
-            //"else " +
-            //"redis.call('SETEX',key,expire,number);" +
-            //"return true ;" +
-            //"end " ;
-
-    public static final String INIT_SECKILL_GOODS__COUNT_SCRIPT1 = "local key = KEYS[1];" +
-            //"local expire = tonumber(ARGV[1]);" +
-            "local expire = ARGV[1];" +
-            //"local number = tonumber(ARGV[2]);" +
-            "local number = ARGV[2];" +
-            //"local count = tonumber(redis.call('GET',key));" +
-            "local count = redis.call('GET',key);" +
+    //初始化秒杀预留的数据,返回1表示成功
+    public static final String INIT_SECKILL_GOODS__COUNT_SCRIPT =
+            "local key = \"rate.limit:\" .. KEYS[1] ;" +
+            "local expire = tonumber(ARGV[1]);" +
+            "local number = tonumber(ARGV[2]);" +
+            "local count = tonumber(redis.call(\"GET\",key));" +
             "if count == nil then " +
-            "redis.call('SETEX',key,expire,number);" +
-            "return true;" +
+                "redis.call(\"SET\",tostring(key),number);"+
+                "redis.call(\"EXPIRE\",tostring(key),expire);" +
+                "return \"1\";" +
             "else " +
-            "redis.call('SETEX',key,expire,number);" +
-            "return true ;" +
+                "redis.call(\"SET\",tostring(key),number);"+
+                "redis.call(\"EXPIRE\",tostring(key),expire);" +
+                "return \"1\";" +
             "end " ;
 
     //递减器
     // 返回 ： >=0 成功递减,返回数值 ; -1 递减失败，值为0   ; -2 没有该值
-    public static final String DECR_SECKILL_GOODS__COUNT_SCRIPT = "local key = KEYS[1];" +
-            "local count = tonumber(redis.call('GET',key));" +
-            "if count == nil then " +
-            "        return -2;" +
-            "else " +
+    public static final String DECR_SECKILL_GOODS__COUNT_SCRIPT =
+            "local key = \"rate.limit:\" .. KEYS[1] ;" +
+            "local count = tonumber(redis.call(\"GET\",key));" +
+           "if count == nil then " +
+            "        return \"-2\";" +
+             "else " +
             "        if count > 0 then " +
-            "            local curr = redis.call('DECR',KEYS[1]);" +
-            "                return curr;" +
+            "            local curr = redis.call(\"DECR\",key); " +
+            "                return curr; " +
             "        else " +
-            "                return -1;" +
+            "                return \"-1\"; " +
             "        end " +
             "end " ;
 
-    //中途叠加
-    public static final String ADD_SECKILL_GOODS__COUNT_SCRIPT = "local key = KEYS[1];" +
-            "local addCount = tonumber(ARGV[1]);" +
-            "local count = tonumber(redis.call('GET',key));" +
+    //中途叠加 -1 表示不存在  ；返回数值为增加后的值
+    public static final String ADD_SECKILL_GOODS__COUNT_SCRIPT =
+            "local key = \"rate.limit:\" .. KEYS[1] ;" +
+            "local addCount = tonumber(ARGV[1]); " +
+            "local count = tonumber(redis.call(\"GET\",key)); " +
             "if count == nil then " +
-            "        return -1;" +
+            "        return \"-1\"; " +
             "else " +
-            "local curr = redis.call('SET',key,count+addCount);" +
-            "return curr ;" +
+            "   local curr = count+addCount ; "+
+            "   redis.call(\"SET\",key,count+addCount); " +
+            "   return curr ; " +
             "end" ;
 }

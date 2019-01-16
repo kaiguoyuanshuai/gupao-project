@@ -85,22 +85,39 @@ public class SecKillController extends BaseController {
      * @param seckillId
      * @return
      */
-    @RequestMapping("/lua")
+    @RequestMapping("/lua_init")
     @Anoymous
     public ResponseData lua(String seckillId) throws ExecutionException, InterruptedException {
 
         RScript s = redisson.getScript();
 
-      //  String res = s.scriptLoad(SecKillConstant.INIT_SECKILL_GOODS__COUNT_SCRIPT);
-
+        String res = s.scriptLoad(SecKillConstant.INIT_SECKILL_GOODS__COUNT_SCRIPT);
         // 再通过SHA值调用脚本
-        Object eval = redisson.getScript().eval(RScript.Mode.READ_WRITE,
-                SecKillConstant.INIT_SECKILL_GOODS__COUNT_SCRIPT,
-                RScript.ReturnType.INTEGER, Lists.newArrayList(seckillId), "1", "1000");
-        System.out.println(eval);
-
-        return ResponseData.SUCCESS();
+        Object eval = redisson.getScript().evalSha(RScript.Mode.READ_WRITE,
+                res,
+                RScript.ReturnType.INTEGER, Lists.newArrayList(seckillId), "10000", "1020");
+        return ResponseData.SUCCESS(eval);
     }
 
+
+    /**
+     * 查看秒杀订单
+     *
+     * @param seckillId
+     * @return
+     */
+    @RequestMapping("/lua_decr")
+    @Anoymous
+    public ResponseData lua_decr(String seckillId) throws ExecutionException, InterruptedException {
+
+        RScript s = redisson.getScript();
+
+        String res = s.scriptLoad(SecKillConstant.DECR_SECKILL_GOODS__COUNT_SCRIPT);
+        // 再通过SHA值调用脚本
+        Object eval = redisson.getScript().evalSha(RScript.Mode.READ_WRITE,
+                res,
+                RScript.ReturnType.INTEGER, Lists.newArrayList(seckillId));
+        return ResponseData.SUCCESS(eval);
+    }
 
 }
