@@ -19,6 +19,7 @@
         <module>integral-service-module</module>
         <module>order-service-module</module>
         <module>seckill-service-module</module>
+        <module>data-consistency-module</module>
     </modules>
 
 </project>

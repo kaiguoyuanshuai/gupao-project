@@ -45,7 +45,7 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="seckill-activity" domainObjectName="SecKillActivity" >
+        <table tableName="seckill_activity" domainObjectName="SecKillActivity" >
             <property name="ignoreQualifiersAtRuntime" value="false"/>
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="ID" sqlStatement="MySql" identity="true" />

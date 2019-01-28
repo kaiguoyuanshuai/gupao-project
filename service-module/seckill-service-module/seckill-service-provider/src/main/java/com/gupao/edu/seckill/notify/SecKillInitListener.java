@@ -23,9 +23,13 @@ public class SecKillInitListener implements ChannelAwareMessageListener {
     public void onMessage(Message message, Channel channel) throws Exception {
         LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>消费秒杀消息>>>>>>>>>>>>>>>>>>>>>>>>>");
         LOGGER.info("消费秒杀参数:{}", new String(message.getBody()));
-
-
         try {
+
+
+
+
+
+
 
         } catch (Exception ex) {
             ex.printStackTrace();
