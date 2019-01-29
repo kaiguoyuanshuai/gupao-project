@@ -1,11 +1,12 @@
-package com.gupao.edu.dataconsistency.service;
+package com.gupao.edu.message.service;
 
 /*
- * 描述: 数据一致性接口
+ * 描述:
  * @auth zhengkk19738
- * @time 2019/1/28
+ * @time 2019/1/29
  */
-public interface DataConsistencyService {
+public interface ReliableMessageService {
+
 
     /**
      * 预发消息
@@ -28,5 +29,5 @@ public interface DataConsistencyService {
      * 完成消息
      */
     public void completeMessage();
-    
+
 }
